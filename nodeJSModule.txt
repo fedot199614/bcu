@@ -1,0 +1,9 @@
+npm install pg@6
+npm install fs
+npm install fs-path
+npm install validate-schema
+npm install pg-schema
+npm install body-parser
+
+
+npm install express-admin

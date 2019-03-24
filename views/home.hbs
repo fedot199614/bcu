@@ -1,0 +1,30 @@
+<div class="container" id="jar">
+{{# each contents }}
+<div class="content">
+<div class="card" style="border: none; border-bottom: 1px ridge #788">
+<div style="margin-bottom:25px"></div>
+    <div>
+	<div>
+	{{this.re_format}}
+	</div>
+	<div>
+	{{{this.title}}}
+	</div>
+	<div class="card" style="margin-bottom:6px; border: none;">
+	{{{this.description}}}
+	</div>
+    <div style="margin-bottom:15px">
+	<a href="/detail?id={{this.id}}">
+	<button class="button" data-hover=". . ."><span>Detalii</span>
+	</button>
+	</a>
+	</div>
+</div>
+</div>
+</div>
+{{/each}}
+</div>
+<nav style="margin-top:2px;">
+  <ul class="pagination justify-content-center">
+  </ul>
+</nav>

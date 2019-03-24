@@ -1,0 +1,30 @@
+﻿CREATE TABLE news (
+    id  SERIAL PRIMARY KEY,
+    title varchar(255) NOT NULL,
+    description text NOT NULL,
+    full_news text NOT NULL,
+    time date NOT NULL
+)
+
+
+CREATE TABLE files(
+    id  SERIAL PRIMARY KEY,
+    file_name text NOT NULL,
+	file_type text 
+)
+
+
+select * from news order by id desc limit 5 offset 5
+
+
+
+
+INSERT INTO news(title, description,full_news)
+VALUES ('234234testdsfsdfs sdf sdf sdf sd f', 'test descr','<div class="art-article"><hr width="100%" style="width: 100%;">
+<p><strong>20.01.2019</strong></p>
+<p align="center"><span style="font-size: medium; font-family:book antiqua, palatino; color: #ff0000;"><strong>Publica</strong><strong>ț</strong><strong>ii&nbsp;FAO 2018</strong></span></p>
+<p><a href="http://biblio.uasm.md/images/news/fao_cat_2018.jpg" title="20.01.2019" rel="lightbox-article"><img src="/images/plg_jdvthumbs/thumb-fao_cat_2018-36905136dc4759d7fba7548a7f31f635.jpg" alt="20.01.2019" style="float: left;" class="thumb-plg"></a>Organizația pentru Alimentație și Agricultură (FAO) are ca funcţie de bază "colectarea, analiza, interpretarea și difuzarea informațiilor referitoare la nutriție, alimentație și agricultură". Această organizaţie publică anual peste 700 de publicații noi, oferind cunoștințe și statistici globale solide, exacte și convingătoare, difuzate în timp util, profesorilor, cercetătorilor, factorilor de decizie politică etc. Cele mai importante publicații sunt produse în cele șase limbi oficiale ale Națiunilor Unite (arabă, chineză, engleză, franceză, rusă și spaniolă).</p>
+ 
+<p>Pentru a vedea ce publicații au apărut sub egida FAO în anul 2018 accesați&nbsp;<strong>&nbsp;</strong><a class="outer" href="http://www.fao.org/3/CA1598EN/ca1598en.pdf" target="_blank"><strong>Catalogul publica</strong><strong>ț</strong><strong>iilor FAO 2018</strong></a><strong>.&nbsp;</strong></p>
+<p><strong>&nbsp;</strong></p></div>)');
+
