@@ -13,6 +13,20 @@ CREATE TABLE files(
 	file_type text 
 )
 
+CREATE TABLE panorama(
+    id  SERIAL PRIMARY KEY,
+    img_name text NOT NULL,
+    active text
+)
+
+
+
+CREATE TABLE achizitii_recente(
+    id  SERIAL PRIMARY KEY,
+	time Date NOT NULL,
+    imagesPath text NOT NULL,
+    list text NOT NULL
+)
 
 select * from news order by id desc limit 5 offset 5
 
