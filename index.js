@@ -46,6 +46,7 @@ xAdmin.init(config, function (err, admin) {
 	app.use("/assets/css",express.static(__dirname + "/assets/css"));
 	app.use("/assets/img",express.static(__dirname + "/assets/img"));
 	app.use("/assets/js",express.static(__dirname + "/assets/js"));
+	app.use("/assets/fonts",express.static(__dirname + "/assets/fonts"));
 	app.use("/views",express.static("/views"));
 	app.set('view engine', '.hbs');
 	app.set('views', path.join(__dirname, 'views'));
@@ -56,13 +57,22 @@ app.get('/', (request, response) => {
 	//base query
 	var panorama;
 	var sliderFull = [];
-	var idAchiz;
+	var idAchiz = '';
+	var displayFlagSlider = '';
+	
 	pg.connect(conString, function (err, client, done) {
 		
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
-	var slider = result.rows[0].imagespath.split(",");
-	idAchiz = result.rows[0].id;
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
 	for(var i in slider){
 		var active = null;
 		if(i == 0){
@@ -94,7 +104,8 @@ app.get('/', (request, response) => {
 		contents: result.rows,
 		baseheaderimg: panorama,
 		slider: sliderFull,
-		idachizitii: idAchiz
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider
 	})
 	
   })
@@ -104,13 +115,21 @@ app.get('/', (request, response) => {
 app.get('/feedback', (request, response) => {
 	var panorama;
 	var sliderFull = [];
-	var idAchiz;
+	var idAchiz = '';
+	var displayFlagSlider = '';
 	pg.connect(conString, function (err, client, done) {
 		
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
-	var slider = result.rows[0].imagespath.split(",");
-	idAchiz = result.rows[0].id;
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
 	for(var i in slider){
 		var active = null;
 		if(i == 0){
@@ -129,7 +148,8 @@ app.get('/feedback', (request, response) => {
 	response.render('feedback', {
         baseheaderimg: panorama,
 		slider: sliderFull,
-		idachizitii: idAchiz
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider
     })
 	})
 	})
@@ -139,13 +159,20 @@ app.get('/feedback', (request, response) => {
 app.get('/book-order', (request, response) => {
 	var panorama;
 	var sliderFull = [];
-	var idAchiz;
+	var idAchiz = '';
+	var displayFlagSlider = '';
 	pg.connect(conString, function (err, client, done) {
 		
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
-	var slider = result.rows[0].imagespath.split(",");
-	idAchiz = result.rows[0].id;
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
 	for(var i in slider){
 		var active = null;
 		if(i == 0){
@@ -165,7 +192,8 @@ app.get('/book-order', (request, response) => {
 	response.render('book-order', {
         baseheaderimg: panorama,
 		slider: sliderFull,
-		idachizitii: idAchiz
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider
     })
 	  })
 	})
@@ -177,13 +205,20 @@ app.get('/detail', (request, response) => {
 	var newsId = request.query.id;
 	var panorama;
 	var sliderFull = [];
-	var idAchiz;
+	var idAchiz = '';
+	var displayFlagSlider = '';
 	pg.connect(conString, function (err, client, done) {
 		
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
-	var slider = result.rows[0].imagespath.split(",");
-	idAchiz = result.rows[0].id;
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
 	for(var i in slider){
 		var active = null;
 		if(i == 0){
@@ -213,7 +248,8 @@ app.get('/detail', (request, response) => {
 		contents: result.rows,
 		baseheaderimg: panorama,
 		slider: sliderFull,
-		idachizitii: idAchiz
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider
 	})
 	
   })
@@ -228,6 +264,7 @@ app.get('/achizitii', (request, response) => {
 	var sliderFull = [];
 	var idAchiz;
 	var achizitiiDetail;
+	var displayFlagSlider = '';
 	pg.connect(conString, function (err, client, done) {
 	
 	client.query(aql_achizitii_detail+""+achizitiiId, [], function (err, result) {

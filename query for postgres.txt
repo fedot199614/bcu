@@ -8,14 +8,17 @@
 
 
 CREATE TABLE files(
-    id  SERIAL PRIMARY KEY,
-    file_name text NOT NULL,
+    id  SERIAL,
+    file_name text NOT NULL PRIMARY KEY,
 	file_type text 
 )
 
 CREATE TABLE panorama(
     id  SERIAL PRIMARY KEY,
     img_name text NOT NULL,
+	constraint fk_tests_students
+     foreign key (img_name) 
+     REFERENCES files (file_name),
     active text
 )
 

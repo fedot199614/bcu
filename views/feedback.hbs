@@ -31,7 +31,9 @@
     <div class="header-dark mag-posts-area d-flex flex-wrap">
         <div class="container hero">
             <div class="row">
-                <div class="col" style="margin-bottom:10px;"><h3 class="sub-panel-header">Program</h3>
+                <div class="col" style="margin-bottom:10px;">
+				<div style="display:{{this.displayprogram}}">
+				<h3 class="sub-panel-header">Program</h3>
                     <div class="sub-panel-dark"><div class="table-responsive program-table">
     <table class="table">
         <tbody>
@@ -49,7 +51,7 @@
             </tr>
         </tbody>
     </table>
-</div></div><h3 class="sub-panel-header">Biblioteca va oferă</h3>
+</div></div></div><h3 class="sub-panel-header">Biblioteca va oferă</h3>
                     <div class="sub-panel-dark"><ul class="list-unstyled metismenu" id="mm-example-1" style="margin-top:18px; font-size:15px">
     <li style="margin-bottom:2px;"><a href="/book-order" >Propuneri pentru achiziții<br /></a><li>
     <li><a href="#" class="has-arrow" aria-expanded="false">Servicii<br /></a>
@@ -147,7 +149,9 @@
                                 <div class="input-group-append"></div>
                             </div>
                         </form>
-                    </div><h3 class="sub-panel-header-right">Achiziţii Recente</h3>
+                    </div>
+					<div style="display:{{this.displayachizitii}}">
+					<h3 class="sub-panel-header-right">Achiziţii Recente</h3>
                     <div class="sub-panel-dark">
                         <div class="carousel slide" data-ride="carousel" id="carousel-2" style="margin-top:18px;width:100%;height:267px;">
 						<a href="/achizitii?id={{idachizitii}}">
@@ -161,7 +165,9 @@
                                     role="button" data-slide="next"><span class="carousel-control-next-icon"></span><span class="sr-only">Next</span></a></div>
                            
                         </div>
-                    </div><h3 class="sub-panel-header-right">Proiecte</h3>
+                    </div></div>
+					<div style="display:{{this.displayproiecte}}">
+					<h3 class="sub-panel-header-right">Proiecte</h3>
                     <div class="sub-panel-dark"><div class="table-responsive program-table">
     <table class="table">
         <tbody>
@@ -184,7 +190,7 @@
             </tr>
         </tbody>
     </table>
-</div></div><h3 class="sub-panel-header-right">Contor vizitatori</h3>
+</div></div></div><h3 class="sub-panel-header-right">Contor vizitatori</h3>
                     <div class="sub-panel-dark"><div class="table-responsive">
     <table class="table">
         <tbody>
