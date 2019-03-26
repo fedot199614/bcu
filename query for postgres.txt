@@ -23,7 +23,6 @@ CREATE TABLE panorama(
 )
 
 
-
 CREATE TABLE achizitii_recente(
     id  SERIAL PRIMARY KEY,
 	time Date NOT NULL,

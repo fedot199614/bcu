@@ -1,6 +1,7 @@
 //const favicon = require('serve-favicon');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 //const multer = require('multer');
 //const errorHandler = require('errorhandler');
 const validate = require('validate-schema');
@@ -17,6 +18,15 @@ const session = require('express-session');
 const pg = require('pg');
 const conString = 'postgres://postgres:password@localhost/bcu-db';
 var limit = 100;
+var visits;
+var uniqueVisitors;
+fs.readFile('totalVisits.txt', function(err, data) {
+    visits = data.toString();
+	
+});
+fs.readFile('uniqueVisits.txt', function(err, data) {
+    uniqueVisitors = data.toString();
+});
 const config = {
     dpath: './node_modules/express-admin/project/',
     config: require('./node_modules/express-admin/project/config.json'),
@@ -30,7 +40,7 @@ const config = {
 	
 var sql_panorama = 'select * from panorama';
 var sql_left_block_slider = 'select id,imagespath from achizitii_recente order by time desc limit 1';
-var aql_achizitii_detail = 'select *,to_char( time, \'Month YYYY\') as re_format from achizitii_recente  where id=';
+var aql_achizitii_detail = 'select *,to_char( time, \'Month YYYY\') as re_format from achizitii_recente  where id=';	
 xAdmin.init(config, function (err, admin) {
     if (err) return console.log(err);
     // web site
@@ -52,7 +62,42 @@ xAdmin.init(config, function (err, admin) {
 	app.set('views', path.join(__dirname, 'views'));
     app.use(bodyParser.json());                        
     app.use(bodyParser.urlencoded({ extended: true }));
+	app.use(cookieParser());
+	app.use(session({
+	name: "server-session-cookie-id",
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: false,
+	cookie: { secure: true }
+	}));
+	app.use(function (req, res, next) {
+  // check if client sent cookie
+  var cookie = req.cookies.cookieName;
+  if (cookie === undefined)
+  {
+    // no: set a new cookie
+    var randomNumber=Math.random().toString();
+    randomNumber=randomNumber.substring(2,randomNumber.length);
+    res.cookie('cookieName',randomNumber, { maxAge: 900000, httpOnly: true });
+	var buff = uniqueVisitors++;
+	fs.writeFile('uniqueVisits.txt', buff, function (err) {
+	if (err) throw err;
+	console.log('Replaced!');
+	});
+	
+    console.log('cookie created successfully');
+	
+  } 
+  else
+  {
+
+    // yes, cookie was already present 
+    //console.log('cookie exists', cookie);
+  } 
+  next(); // <-- important!
+});
     // site routes
+
 app.get('/', (request, response) => {
 	//base query
 	var panorama;
@@ -60,8 +105,12 @@ app.get('/', (request, response) => {
 	var idAchiz = '';
 	var displayFlagSlider = '';
 	
+	fs.writeFile('totalVisits.txt', visits++, function (err) {
+	if (err) throw err;
+	});
+	
 	pg.connect(conString, function (err, client, done) {
-		
+   
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
 	var slider; 
@@ -94,7 +143,7 @@ app.get('/', (request, response) => {
 		return console.error('error fetching client from pool', err)
 	}
 	
-	client.query('SELECT *, to_char( time, \'DD/MM/YYYY\') as re_format from news order by id desc', [], function (err, result) {
+	client.query('SELECT *, to_char( time, \'DD/MM/YYYY\') as re_format from news order by time desc', [], function (err, result) {
 		done()
     if (err) {
       return console.error('error happened during query', err)
@@ -105,7 +154,9 @@ app.get('/', (request, response) => {
 		baseheaderimg: panorama,
 		slider: sliderFull,
 		idachizitii: idAchiz,
-		displayachizitii: displayFlagSlider
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits
 	})
 	
   })
@@ -113,12 +164,14 @@ app.get('/', (request, response) => {
 })
 //feedback
 app.get('/feedback', (request, response) => {
+	
 	var panorama;
 	var sliderFull = [];
 	var idAchiz = '';
 	var displayFlagSlider = '';
+	
 	pg.connect(conString, function (err, client, done) {
-		
+
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
 	var slider; 
@@ -149,10 +202,12 @@ app.get('/feedback', (request, response) => {
         baseheaderimg: panorama,
 		slider: sliderFull,
 		idachizitii: idAchiz,
-		displayachizitii: displayFlagSlider
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits
     })
-	})
-	})
+})
+})
     
 })
 //book-order
@@ -161,8 +216,8 @@ app.get('/book-order', (request, response) => {
 	var sliderFull = [];
 	var idAchiz = '';
 	var displayFlagSlider = '';
+	
 	pg.connect(conString, function (err, client, done) {
-		
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
 	var slider; 
@@ -193,7 +248,9 @@ app.get('/book-order', (request, response) => {
         baseheaderimg: panorama,
 		slider: sliderFull,
 		idachizitii: idAchiz,
-		displayachizitii: displayFlagSlider
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits
     })
 	  })
 	})
@@ -207,8 +264,9 @@ app.get('/detail', (request, response) => {
 	var sliderFull = [];
 	var idAchiz = '';
 	var displayFlagSlider = '';
+	
 	pg.connect(conString, function (err, client, done) {
-		
+
 	client.query(sql_left_block_slider, [], function (err, result) {
 	done()
 	var slider; 
@@ -249,7 +307,9 @@ app.get('/detail', (request, response) => {
 		baseheaderimg: panorama,
 		slider: sliderFull,
 		idachizitii: idAchiz,
-		displayachizitii: displayFlagSlider
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits
 	})
 	
   })
@@ -265,8 +325,9 @@ app.get('/achizitii', (request, response) => {
 	var idAchiz;
 	var achizitiiDetail;
 	var displayFlagSlider = '';
-	pg.connect(conString, function (err, client, done) {
 	
+	pg.connect(conString, function (err, client, done) {
+
 	client.query(aql_achizitii_detail+""+achizitiiId, [], function (err, result) {
 	done()
 	
@@ -298,7 +359,9 @@ app.get('/achizitii', (request, response) => {
         baseheaderimg: panorama,
 		slider: sliderFull,
 		idachizitii: idAchiz,
-		achizitiiinfo: achizitiiDetail
+		achizitiiinfo: achizitiiDetail,
+		visits: uniqueVisitors,
+		visitstotal: visits
 	})
 	})
 })
@@ -310,8 +373,8 @@ app.get('/achizitii', (request, response) => {
 	
 	
     // site server
-    app.listen(80, function () {
-        console.log('My awesome site listening on port 80');
+    app.listen(3000, function () {
+        console.log('My awesome site listening on port 3000');
     });
 });
 //app.listen(3000)
