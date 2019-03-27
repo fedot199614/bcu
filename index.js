@@ -2,8 +2,7 @@
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-//const multer = require('multer');
-//const errorHandler = require('errorhandler');
+var nodemailer = require('nodemailer');
 const validate = require('validate-schema');
 const pgSchema = require('pg-schema');
 const childProcess = require('child_process');
@@ -20,12 +19,20 @@ const conString = 'postgres://postgres:password@localhost/bcu-db';
 var limit = 100;
 var visits;
 var uniqueVisitors;
+const urlencodedParser = bodyParser.urlencoded({extended: false});
 fs.readFile('totalVisits.txt', function(err, data) {
     visits = data.toString();
 	
 });
 fs.readFile('uniqueVisits.txt', function(err, data) {
     uniqueVisitors = data.toString();
+});
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'usm.bcu@gmail.com',
+    pass: 'sfd12345'
+  }
 });
 const config = {
     dpath: './node_modules/express-admin/project/',
@@ -204,7 +211,8 @@ app.get('/feedback', (request, response) => {
 		idachizitii: idAchiz,
 		displayachizitii: displayFlagSlider,
 		visits: uniqueVisitors,
-		visitstotal: visits
+		visitstotal: visits,
+		displayallert: 'none'
     })
 })
 })
@@ -250,7 +258,8 @@ app.get('/book-order', (request, response) => {
 		idachizitii: idAchiz,
 		displayachizitii: displayFlagSlider,
 		visits: uniqueVisitors,
-		visitstotal: visits
+		visitstotal: visits,
+		displayallert: 'none'
     })
 	  })
 	})
@@ -368,6 +377,135 @@ app.get('/achizitii', (request, response) => {
     
 })
 
+app.post("/book-order", urlencodedParser, function (request, response) {
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+    if(!request.body) return response.sendStatus(400);
+	var mailOptions = {
+	from: 'usm.bcu@gmail.com',
+	to: 'dulger_1996_96@mail.ru',
+	subject: 'Propuneri pentru achiziţii (BCU)',
+	text: 'Titlul: '+request.body.titlul+'\nAutorul: '+request.body.autorul+'\nAnul: '
+					+request.body.anul+'\nEditura: '+request.body.editura+'\nLocul: '
+					+request.body.locul+'\nISBN/ISNN: '+request.body.isbn+'\nNume: '
+					+request.body.nume+'\nFacultate: '+request.body.facultate+'\nCatedra: '
+					+request.body.catedra+'\nStatut: '+request.body.statut
+	};
+	
+	transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+    console.log(error);
+	} else {
+    
+	}
+	});
+	pg.connect(conString, function (err, client, done) {
+	client.query(sql_left_block_slider, [], function (err, result) {
+	done()
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+		
+		
+	client.query(sql_panorama, [], function (err, result) {
+	done()
+	panorama = result.rows;
+	
+	
+	response.render('book-order', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		displayallert: ''
+    })
+	  })
+	});
+	
+	
+});
+
+app.post("/feedback", urlencodedParser, function (request, response) {
+	
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+    if(!request.body) return response.sendStatus(400);
+    
+	var mailOptions = {
+	from: 'usm.bcu@gmail.com',
+	to: 'dulger_1996_96@mail.ru',
+	subject: 'FeedBack (BCU)',
+	text: 'Nume: '+request.body.name+'\nEmail: '+request.body.email+'\nStatut: '
+				  +request.body.statut+'\nMessage: '+request.body.message
+	};
+	
+	transporter.sendMail(mailOptions, function(error, info){
+	if (error) {
+    console.log(error);
+	} else {
+    
+	}
+	});
+	pg.connect(conString, function (err, client, done) {
+
+	client.query(sql_left_block_slider, [], function (err, result) {
+	done()
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+		
+		
+		
+	client.query(sql_panorama, [], function (err, result) {
+	done()
+	panorama = result.rows;
+	response.render('feedback', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		displayallert: ''
+    })
+})
+});
+});
 
 
 	
