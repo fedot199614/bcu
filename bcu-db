@@ -5,7 +5,7 @@
 -- Dumped from database version 11.2
 -- Dumped by pg_dump version 11.2
 
--- Started on 2019-03-27 00:39:33
+-- Started on 2019-03-31 15:02:45
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -53,12 +53,51 @@ CREATE SEQUENCE public.achizitii_recente_id_seq
 ALTER TABLE public.achizitii_recente_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2854 (class 0 OID 0)
+-- TOC entry 2940 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: achizitii_recente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.achizitii_recente_id_seq OWNED BY public.achizitii_recente.id;
+
+
+--
+-- TOC entry 209 (class 1259 OID 16674)
+-- Name: contacte; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contacte (
+    id integer NOT NULL,
+    contact_name text NOT NULL,
+    contact_description text NOT NULL
+);
+
+
+ALTER TABLE public.contacte OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16672)
+-- Name: contacte_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contacte_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contacte_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2941 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: contacte_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contacte_id_seq OWNED BY public.contacte.id;
 
 
 --
@@ -92,12 +131,52 @@ CREATE SEQUENCE public.files_id_seq
 ALTER TABLE public.files_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2855 (class 0 OID 0)
+-- TOC entry 2942 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.files_id_seq OWNED BY public.files.id;
+
+
+--
+-- TOC entry 211 (class 1259 OID 16685)
+-- Name: linkuri; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.linkuri (
+    id integer NOT NULL,
+    img_name text NOT NULL,
+    description text,
+    link text
+);
+
+
+ALTER TABLE public.linkuri OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16683)
+-- Name: linkuri_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.linkuri_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.linkuri_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2943 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: linkuri_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.linkuri_id_seq OWNED BY public.linkuri.id;
 
 
 --
@@ -133,7 +212,7 @@ CREATE SEQUENCE public.news_id_seq
 ALTER TABLE public.news_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2856 (class 0 OID 0)
+-- TOC entry 2944 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -172,7 +251,7 @@ CREATE SEQUENCE public.panorama_id_seq
 ALTER TABLE public.panorama_id_seq OWNER TO postgres;
 
 --
--- TOC entry 2857 (class 0 OID 0)
+-- TOC entry 2945 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: panorama_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -181,7 +260,203 @@ ALTER SEQUENCE public.panorama_id_seq OWNED BY public.panorama.id;
 
 
 --
--- TOC entry 2708 (class 2604 OID 16501)
+-- TOC entry 217 (class 1259 OID 16724)
+-- Name: produse; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produse (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.produse OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16722)
+-- Name: produse_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produse_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produse_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2946 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: produse_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.produse_id_seq OWNED BY public.produse.id;
+
+
+--
+-- TOC entry 205 (class 1259 OID 16614)
+-- Name: program; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.program (
+    id integer NOT NULL,
+    days character varying(255) NOT NULL,
+    "time" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.program OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16612)
+-- Name: program_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.program_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.program_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2947 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: program_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.program_id_seq OWNED BY public.program.id;
+
+
+--
+-- TOC entry 207 (class 1259 OID 16658)
+-- Name: proiecte; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.proiecte (
+    id integer NOT NULL,
+    img_name text NOT NULL,
+    description text,
+    link text
+);
+
+
+ALTER TABLE public.proiecte OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16656)
+-- Name: proiecte_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.proiecte_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.proiecte_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2948 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: proiecte_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.proiecte_id_seq OWNED BY public.proiecte.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 16712)
+-- Name: resurse; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resurse (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.resurse OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16710)
+-- Name: resurse_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.resurse_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resurse_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2949 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: resurse_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.resurse_id_seq OWNED BY public.resurse.id;
+
+
+--
+-- TOC entry 213 (class 1259 OID 16701)
+-- Name: servicii; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.servicii (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.servicii OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16699)
+-- Name: servicii_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.servicii_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.servicii_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2950 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: servicii_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.servicii_id_seq OWNED BY public.servicii.id;
+
+
+--
+-- TOC entry 2757 (class 2604 OID 16501)
 -- Name: achizitii_recente id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -189,7 +464,15 @@ ALTER TABLE ONLY public.achizitii_recente ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 2709 (class 2604 OID 16569)
+-- TOC entry 2762 (class 2604 OID 16677)
+-- Name: contacte id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacte ALTER COLUMN id SET DEFAULT nextval('public.contacte_id_seq'::regclass);
+
+
+--
+-- TOC entry 2758 (class 2604 OID 16569)
 -- Name: files id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -197,7 +480,15 @@ ALTER TABLE ONLY public.files ALTER COLUMN id SET DEFAULT nextval('public.files_
 
 
 --
--- TOC entry 2707 (class 2604 OID 16455)
+-- TOC entry 2763 (class 2604 OID 16688)
+-- Name: linkuri id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri ALTER COLUMN id SET DEFAULT nextval('public.linkuri_id_seq'::regclass);
+
+
+--
+-- TOC entry 2756 (class 2604 OID 16455)
 -- Name: news id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -205,7 +496,7 @@ ALTER TABLE ONLY public.news ALTER COLUMN id SET DEFAULT nextval('public.news_id
 
 
 --
--- TOC entry 2710 (class 2604 OID 16580)
+-- TOC entry 2759 (class 2604 OID 16580)
 -- Name: panorama id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -213,18 +504,70 @@ ALTER TABLE ONLY public.panorama ALTER COLUMN id SET DEFAULT nextval('public.pan
 
 
 --
--- TOC entry 2844 (class 0 OID 16498)
+-- TOC entry 2766 (class 2604 OID 16727)
+-- Name: produse id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produse ALTER COLUMN id SET DEFAULT nextval('public.produse_id_seq'::regclass);
+
+
+--
+-- TOC entry 2760 (class 2604 OID 16617)
+-- Name: program id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.program ALTER COLUMN id SET DEFAULT nextval('public.program_id_seq'::regclass);
+
+
+--
+-- TOC entry 2761 (class 2604 OID 16661)
+-- Name: proiecte id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte ALTER COLUMN id SET DEFAULT nextval('public.proiecte_id_seq'::regclass);
+
+
+--
+-- TOC entry 2765 (class 2604 OID 16715)
+-- Name: resurse id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resurse ALTER COLUMN id SET DEFAULT nextval('public.resurse_id_seq'::regclass);
+
+
+--
+-- TOC entry 2764 (class 2604 OID 16704)
+-- Name: servicii id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.servicii ALTER COLUMN id SET DEFAULT nextval('public.servicii_id_seq'::regclass);
+
+
+--
+-- TOC entry 2916 (class 0 OID 16498)
 -- Dependencies: 199
 -- Data for Name: achizitii_recente; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.achizitii_recente (id, "time", imagespath, list) FROM stdin;
-5	2019-03-26	http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg,\r\n/node_modules/express-admin/public/upload/3-1.jpg	<table align="center" border="0" cellpadding="0" cellspacing="0">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td><strong>1</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/015.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>СТУПИН, А.С.</strong>&nbsp;Основы семеноведения: Учебное пособие. СПб: Лань, 2014. 384 с. ISBN 978-5-8114-1570-0.</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>2</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/016.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>GABOR, Manuela Rozalia, OLTEAN, Flavia Dana.</strong>&nbsp;Produse inovative &icirc;n turismul internaţional şi naţional. Bucureşti: C.H. Beck, 2015. 409 p. ISBN 978-606-18-0396-5.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>3</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/017.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>NEACŞU, I., MANASIA, Loredana, CHICIOREANU, Teodora.</strong>&nbsp;Elaborarea lucrărilor de licenţă, disertaţie şi gradul didactic I : Ghid ştiinţific şi metodologic. Piteşti: Paralela 45, 2016. 206 p. ISBN 978-973-47-2279-2.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>4</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/018.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>USTUROI, V.Gr., PĂSĂRIN, B., CHEREJI, I. JR., USTUROI, A.</strong>&nbsp;Tehnici hoteliere şi de servire a clienţilor /. - Iaşi : Pim, 2016. - 243 p. ; fig.. - Bibliogr. : p. 242-243. - ISBN 978-606-13-3411-7.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>5</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/019.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>COZARI, T.</strong>&nbsp;Păsările: Enciclopedie ilustrată. Chişinău: ARC, 2016. 288 p. ISBN 978-9975-137-46-1.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>6</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/020.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>P&Icirc;NZARU, P., S&Icirc;RBU, Tatiana.</strong>&nbsp;Flora vasculară din Republica Moldova : (Lista speciilor şi ecologia). Ed. a 2-a, rev. şi compl. Chişinau, 2016. 261 p. ISBN 978-9975-76-185-7.</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n
+5	2019-03-26	http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg	<table align="center" border="0" cellpadding="0" cellspacing="0">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td><strong>1</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/015.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>СТУПИН, А.С.</strong>&nbsp;Основы семеноведения: Учебное пособие. СПб: Лань, 2014. 384 с. ISBN 978-5-8114-1570-0.</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>2</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/016.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>GABOR, Manuela Rozalia, OLTEAN, Flavia Dana.</strong>&nbsp;Produse inovative &icirc;n turismul internaţional şi naţional. Bucureşti: C.H. Beck, 2015. 409 p. ISBN 978-606-18-0396-5.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>3</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/017.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>NEACŞU, I., MANASIA, Loredana, CHICIOREANU, Teodora.</strong>&nbsp;Elaborarea lucrărilor de licenţă, disertaţie şi gradul didactic I : Ghid ştiinţific şi metodologic. Piteşti: Paralela 45, 2016. 206 p. ISBN 978-973-47-2279-2.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>4</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/018.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>USTUROI, V.Gr., PĂSĂRIN, B., CHEREJI, I. JR., USTUROI, A.</strong>&nbsp;Tehnici hoteliere şi de servire a clienţilor /. - Iaşi : Pim, 2016. - 243 p. ; fig.. - Bibliogr. : p. 242-243. - ISBN 978-606-13-3411-7.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>5</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/019.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>COZARI, T.</strong>&nbsp;Păsările: Enciclopedie ilustrată. Chişinău: ARC, 2016. 288 p. ISBN 978-9975-137-46-1.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>6</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/020.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>P&Icirc;NZARU, P., S&Icirc;RBU, Tatiana.</strong>&nbsp;Flora vasculară din Republica Moldova : (Lista speciilor şi ecologia). Ed. a 2-a, rev. şi compl. Chişinau, 2016. 261 p. ISBN 978-9975-76-185-7.</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n
 \.
 
 
 --
--- TOC entry 2846 (class 0 OID 16566)
+-- TOC entry 2926 (class 0 OID 16674)
+-- Dependencies: 209
+-- Data for Name: contacte; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contacte (id, contact_name, contact_description) FROM stdin;
+2	Tel.	xxxxxxxx
+1	Email	...@mail.ru
+\.
+
+
+--
+-- TOC entry 2918 (class 0 OID 16566)
 -- Dependencies: 201
 -- Data for Name: files; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -234,11 +577,28 @@ COPY public.files (id, file_name, file_type) FROM stdin;
 2	3-1.jpg	\N
 3	biblioteca-img-principal-1.jpg	\N
 4	4-1.jpg	\N
+10	2ad4e455b05bc3e629c861aa738beffc.jpg	\N
+11	ban-6.png	\N
+12	ban3.png	\N
+13	ban1.png	\N
+14	ban2.png	\N
 \.
 
 
 --
--- TOC entry 2842 (class 0 OID 16452)
+-- TOC entry 2928 (class 0 OID 16685)
+-- Dependencies: 211
+-- Data for Name: linkuri; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.linkuri (id, img_name, description, link) FROM stdin;
+1	ban1.png	\N	http://primo.libuniv.md/
+2	ban2.png	\N	http://dspace.usm.md:8080/xmlui/
+\.
+
+
+--
+-- TOC entry 2914 (class 0 OID 16452)
 -- Dependencies: 197
 -- Data for Name: news; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -251,7 +611,7 @@ COPY public.news (id, title, description, full_news, "time") FROM stdin;
 
 
 --
--- TOC entry 2848 (class 0 OID 16577)
+-- TOC entry 2920 (class 0 OID 16577)
 -- Dependencies: 203
 -- Data for Name: panorama; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -260,11 +620,91 @@ COPY public.panorama (id, img_name, active) FROM stdin;
 1	3-1.jpg	active
 2	biblioteca-img-principal-1.jpg	\N
 3	4-1.jpg	\N
+5	2ad4e455b05bc3e629c861aa738beffc.jpg	\N
 \.
 
 
 --
--- TOC entry 2858 (class 0 OID 0)
+-- TOC entry 2934 (class 0 OID 16724)
+-- Dependencies: 217
+-- Data for Name: produse; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.produse (id, link_title, content) FROM stdin;
+1	Catalog online	\N
+2	Cataloage tradiționale	\N
+3	Repozitoriu instituțional	\N
+4	e-buletine	\N
+5	Bibliografii	\N
+\.
+
+
+--
+-- TOC entry 2922 (class 0 OID 16614)
+-- Dependencies: 205
+-- Data for Name: program; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.program (id, days, "time") FROM stdin;
+1	Luni-vineri	09.00-18.00
+2	Sâmbătă	09.00-16.00
+3	Duminică	fără program
+\.
+
+
+--
+-- TOC entry 2924 (class 0 OID 16658)
+-- Dependencies: 207
+-- Data for Name: proiecte; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.proiecte (id, img_name, description, link) FROM stdin;
+1	ban3.png	Modernization of academic library services in Moldova	https://newinformationservices.wordpress.com/
+2	ban-6.png	Modern Information Services for Improvement Study Quality	http://misisq.usmf.md/index.php/en-us/
+\.
+
+
+--
+-- TOC entry 2932 (class 0 OID 16712)
+-- Dependencies: 215
+-- Data for Name: resurse; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.resurse (id, link_title, content) FROM stdin;
+4	Resurse Internet	\N
+2	Colecții	\N
+3	Baze de date	\N
+\.
+
+
+--
+-- TOC entry 2930 (class 0 OID 16701)
+-- Dependencies: 213
+-- Data for Name: servicii; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.servicii (id, link_title, content) FROM stdin;
+1	Împrumut de publicaţii la domiciliu.	\N
+2	Împrumut de publicaţii în săli de lectură.	\N
+3	Împrumut interbibliotecar naţional.	\N
+4	Împrumut interbibliotecar internaţional	\N
+5	Informarea utilizatorilor în regim "Difuzare Selectivă a Informaţiei	\N
+6	Organizarea activităţilor de informare bibliografică	\N
+7	Organizarea expoziţiilor, lansărilor de carte	\N
+8	Cercetări bibliografice la cerere	\N
+9	Referinţe bibliografice şi factografice	\N
+10	E - referințe	\N
+11	Consultaţii, asistenţă informaţional-bibliografică	\N
+12	Lecţii de cultură a informaţiei	\N
+13	Ture ghidate în bibliotecă	\N
+14	Acces la baze de date	\N
+15	Livrare electronică de documente	\N
+16	Acces Internet	\N
+\.
+
+
+--
+-- TOC entry 2951 (class 0 OID 0)
 -- Dependencies: 198
 -- Name: achizitii_recente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -273,34 +713,97 @@ SELECT pg_catalog.setval('public.achizitii_recente_id_seq', 5, true);
 
 
 --
--- TOC entry 2859 (class 0 OID 0)
+-- TOC entry 2952 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: contacte_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contacte_id_seq', 2, true);
+
+
+--
+-- TOC entry 2953 (class 0 OID 0)
 -- Dependencies: 200
 -- Name: files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.files_id_seq', 9, true);
+SELECT pg_catalog.setval('public.files_id_seq', 14, true);
 
 
 --
--- TOC entry 2860 (class 0 OID 0)
+-- TOC entry 2954 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: linkuri_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.linkuri_id_seq', 2, true);
+
+
+--
+-- TOC entry 2955 (class 0 OID 0)
 -- Dependencies: 196
 -- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.news_id_seq', 3, true);
+SELECT pg_catalog.setval('public.news_id_seq', 4, true);
 
 
 --
--- TOC entry 2861 (class 0 OID 0)
+-- TOC entry 2956 (class 0 OID 0)
 -- Dependencies: 202
 -- Name: panorama_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.panorama_id_seq', 3, true);
+SELECT pg_catalog.setval('public.panorama_id_seq', 5, true);
 
 
 --
--- TOC entry 2714 (class 2606 OID 16506)
+-- TOC entry 2957 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: produse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produse_id_seq', 5, true);
+
+
+--
+-- TOC entry 2958 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: program_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.program_id_seq', 4, true);
+
+
+--
+-- TOC entry 2959 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: proiecte_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.proiecte_id_seq', 2, true);
+
+
+--
+-- TOC entry 2960 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: resurse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.resurse_id_seq', 4, true);
+
+
+--
+-- TOC entry 2961 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: servicii_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.servicii_id_seq', 16, true);
+
+
+--
+-- TOC entry 2770 (class 2606 OID 16506)
 -- Name: achizitii_recente achizitii_recente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -309,7 +812,16 @@ ALTER TABLE ONLY public.achizitii_recente
 
 
 --
--- TOC entry 2716 (class 2606 OID 16574)
+-- TOC entry 2780 (class 2606 OID 16682)
+-- Name: contacte contacte_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacte
+    ADD CONSTRAINT contacte_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2772 (class 2606 OID 16574)
 -- Name: files files_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -318,7 +830,16 @@ ALTER TABLE ONLY public.files
 
 
 --
--- TOC entry 2712 (class 2606 OID 16460)
+-- TOC entry 2782 (class 2606 OID 16693)
+-- Name: linkuri linkuri_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri
+    ADD CONSTRAINT linkuri_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2768 (class 2606 OID 16460)
 -- Name: news news_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -327,7 +848,7 @@ ALTER TABLE ONLY public.news
 
 
 --
--- TOC entry 2718 (class 2606 OID 16585)
+-- TOC entry 2774 (class 2606 OID 16585)
 -- Name: panorama panorama_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -336,7 +857,70 @@ ALTER TABLE ONLY public.panorama
 
 
 --
--- TOC entry 2719 (class 2606 OID 16586)
+-- TOC entry 2788 (class 2606 OID 16732)
+-- Name: produse produse_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produse
+    ADD CONSTRAINT produse_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2776 (class 2606 OID 16622)
+-- Name: program program_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.program
+    ADD CONSTRAINT program_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2778 (class 2606 OID 16666)
+-- Name: proiecte proiecte_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte
+    ADD CONSTRAINT proiecte_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2786 (class 2606 OID 16720)
+-- Name: resurse resurse_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resurse
+    ADD CONSTRAINT resurse_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2784 (class 2606 OID 16709)
+-- Name: servicii servicii_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.servicii
+    ADD CONSTRAINT servicii_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2790 (class 2606 OID 16667)
+-- Name: proiecte fk_tests; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte
+    ADD CONSTRAINT fk_tests FOREIGN KEY (img_name) REFERENCES public.files(file_name);
+
+
+--
+-- TOC entry 2791 (class 2606 OID 16694)
+-- Name: linkuri fk_tests; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri
+    ADD CONSTRAINT fk_tests FOREIGN KEY (img_name) REFERENCES public.files(file_name);
+
+
+--
+-- TOC entry 2789 (class 2606 OID 16586)
 -- Name: panorama fk_tests_students; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -344,7 +928,7 @@ ALTER TABLE ONLY public.panorama
     ADD CONSTRAINT fk_tests_students FOREIGN KEY (img_name) REFERENCES public.files(file_name);
 
 
--- Completed on 2019-03-27 00:39:34
+-- Completed on 2019-03-31 15:02:47
 
 --
 -- PostgreSQL database dump complete
