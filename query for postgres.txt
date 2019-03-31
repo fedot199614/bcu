@@ -30,6 +30,65 @@ CREATE TABLE achizitii_recente(
     list text NOT NULL
 )
 
+
+
+CREATE TABLE program (
+    id  SERIAL PRIMARY KEY,
+    days varchar(255) NOT NULL,
+    time varchar(255) NOT NULL
+)
+
+
+CREATE TABLE servicii (
+    id  SERIAL PRIMARY KEY,
+    link_title text NOT NULL,
+    content text 
+)
+
+CREATE TABLE resurse (
+    id  SERIAL PRIMARY KEY,
+    link_title text NOT NULL,
+    content text 
+)
+
+CREATE TABLE produse (
+    id  SERIAL PRIMARY KEY,
+    link_title text NOT NULL,
+    content text 
+)
+
+
+
+CREATE TABLE proiecte(
+    id  SERIAL PRIMARY KEY,
+    img_name text NOT NULL,
+	constraint fk_tests
+    foreign key (img_name) 
+    REFERENCES files (file_name),
+    description text,
+	link text
+)
+
+CREATE TABLE contacte (
+    id  SERIAL PRIMARY KEY,
+    contact_name text NOT NULL,
+    contact_description text NOT NULL
+)
+
+
+CREATE TABLE linkuri(
+    id  SERIAL PRIMARY KEY,
+    img_name text NOT NULL,
+	constraint fk_tests
+    foreign key (img_name) 
+    REFERENCES files (file_name),
+    description text,
+	link text
+)
+
+
+
+
 select * from news order by id desc limit 5 offset 5
 
 
