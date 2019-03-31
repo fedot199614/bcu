@@ -1,0 +1,10 @@
+{
+"dbname":"bcu-db",
+"postgreslogin":"postgres",
+"postgrespass":"password",
+"postgresip":"localhost",
+"emailservice":"gmail",
+"emaillogin":"usm.bcu@gmail.com",
+"emailpassword":"sfd12345",
+"toemail":"dulger_1996_96@mail.ru"
+}

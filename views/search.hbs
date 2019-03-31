@@ -128,7 +128,7 @@
 				</div>
 				<div style="border-bottom: 1px ridge #788" id="resurse">
 				Category: resurse
-					{{# each resurse }}
+					{{# each resurseresp }}
 					<div style="border-bottom: 1px ridge #788">
 					<a href="/resurse?id={{this.id}}">{{this.link_title}}</a>
 					{{{this.content}}}
@@ -137,7 +137,7 @@
 				</div>
 				<div style="border-bottom: 1px ridge #788" id="servicii">
 				Category: servicii
-					{{# each servicii }}
+					{{# each serviciiresp }}
 					<div style="border-bottom: 1px ridge #788">
 					<a href="/servicii?id={{this.id}}">{{this.link_title}}</a>
 					{{{this.content}}}
@@ -146,7 +146,7 @@
 				</div>
 				<div style="border-bottom: 1px ridge #788" id="produse">
 				Category: produse
-					{{# each produse }}
+					{{# each produseresp }}
 					<div style="border-bottom: 1px ridge #788">
 					<a href="/produse?id={{this.id}}">{{this.link_title}}</a>
 					{{{this.content}}}

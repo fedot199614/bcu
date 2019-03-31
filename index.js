@@ -1,4 +1,5 @@
 //const favicon = require('serve-favicon');
+const parse = require('parse');
 const methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -15,7 +16,30 @@ const exphbs = require('express-handlebars');
 const xAdmin = require('express-admin');
 const session = require('express-session');
 const pg = require('pg');
-const conString = 'postgres://postgres:password@localhost/bcu-db';
+var conString = '';
+var emailservice;
+var emaillogin;
+var emailpass;
+var transporter;
+var toemail;
+fs.readFile('config.json', function(err, data) {
+	
+	var datObj = JSON.parse(data.toString());
+	
+    conString = 'postgres://'+datObj.postgreslogin+':'+datObj.postgrespass+'@'+datObj.postgresip+'/'+datObj.dbname+'';
+	emailservice = datObj.emailservice;
+	emaillogin = datObj.emaillogin;
+	emailpass = datObj.emailpassword;
+	toemail = datObj.toemail;
+	transporter = nodemailer.createTransport({
+	  service: emailservice,
+	  auth: {
+		user: emaillogin,
+		pass: emailpass
+	  }
+	});
+
+});
 var limit = 100;
 var visits;
 var uniqueVisitors;
@@ -27,13 +51,8 @@ fs.readFile('totalVisits.txt', function(err, data) {
 fs.readFile('uniqueVisits.txt', function(err, data) {
     uniqueVisitors = data.toString();
 });
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'usm.bcu@gmail.com',
-    pass: 'sfd12345'
-  }
-});
+
+
 const config = {
     dpath: './node_modules/express-admin/project/',
     config: require('./node_modules/express-admin/project/config.json'),
@@ -641,9 +660,11 @@ app.post("/book-order", urlencodedParser, function (request, response) {
 	var idAchiz = '';
 	var displayFlagSlider = '';
     if(!request.body) return response.sendStatus(400);
+	console.log("test")
+	console.log(emaillogin)
 	var mailOptions = {
-	from: 'usm.bcu@gmail.com',
-	to: 'dulger_1996_96@mail.ru',
+	from: emaillogin,
+	to: toemail,
 	subject: 'Propuneri pentru achiziţii (BCU)',
 	text: 'Titlul: '+request.body.titlul+'\nAutorul: '+request.body.autorul+'\nAnul: '
 					+request.body.anul+'\nEditura: '+request.body.editura+'\nLocul: '
@@ -758,8 +779,8 @@ app.post("/feedback", urlencodedParser, function (request, response) {
     if(!request.body) return response.sendStatus(400);
     
 	var mailOptions = {
-	from: 'usm.bcu@gmail.com',
-	to: 'dulger_1996_96@mail.ru',
+	from: emaillogin,
+	to: toemail,
 	subject: 'FeedBack (BCU)',
 	text: 'Nume: '+request.body.name+'\nEmail: '+request.body.email+'\nStatut: '
 				  +request.body.statut+'\nMessage: '+request.body.message
@@ -1317,9 +1338,9 @@ app.get('/search', (request, response) => {
 		produse: produse,
 		news: news,
 		achizitii: achizitii,
-		resurse: resurseresp,
-		servicii: serviciiresp,
-		produse: produseresp
+		resurseresp: resurseresp,
+		serviciiresp: serviciiresp,
+		produseresp: produseresp
 		
 	})
 	})
