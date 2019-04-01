@@ -1,4 +1,4 @@
-npm install pg@6
+npm install pg
 npm install fs
 npm install fs-path
 npm install validate-schema

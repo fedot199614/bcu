@@ -1,8 +1,10 @@
 {
+"serviceport":"3000",
 "dbname":"bcu-db",
+"postgreshost":"localhost",
 "postgreslogin":"postgres",
 "postgrespass":"password",
-"postgresip":"localhost",
+"postgresport":"5432",
 "emailservice":"gmail",
 "emaillogin":"usm.bcu@gmail.com",
 "emailpassword":"sfd12345",
