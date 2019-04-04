@@ -1,0 +1,1260 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 11.2
+-- Dumped by pg_dump version 11.2
+
+-- Started on 2019-04-04 07:51:14
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 199 (class 1259 OID 16498)
+-- Name: achizitii_recente; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.achizitii_recente (
+    id integer NOT NULL,
+    "time" date NOT NULL,
+    imagespath text NOT NULL,
+    list text NOT NULL
+);
+
+
+ALTER TABLE public.achizitii_recente OWNER TO postgres;
+
+--
+-- TOC entry 198 (class 1259 OID 16496)
+-- Name: achizitii_recente_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.achizitii_recente_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.achizitii_recente_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2989 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: achizitii_recente_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.achizitii_recente_id_seq OWNED BY public.achizitii_recente.id;
+
+
+--
+-- TOC entry 209 (class 1259 OID 16674)
+-- Name: contacte; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.contacte (
+    id integer NOT NULL,
+    contact_name text NOT NULL,
+    contact_description text NOT NULL
+);
+
+
+ALTER TABLE public.contacte OWNER TO postgres;
+
+--
+-- TOC entry 208 (class 1259 OID 16672)
+-- Name: contacte_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.contacte_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.contacte_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2990 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: contacte_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.contacte_id_seq OWNED BY public.contacte.id;
+
+
+--
+-- TOC entry 219 (class 1259 OID 16735)
+-- Name: despre_noi; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.despre_noi (
+    id integer NOT NULL,
+    title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.despre_noi OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 16733)
+-- Name: despre_noi_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.despre_noi_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.despre_noi_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2991 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: despre_noi_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.despre_noi_id_seq OWNED BY public.despre_noi.id;
+
+
+--
+-- TOC entry 201 (class 1259 OID 16566)
+-- Name: files; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.files (
+    id integer NOT NULL,
+    file_name text NOT NULL,
+    file_type text
+);
+
+
+ALTER TABLE public.files OWNER TO postgres;
+
+--
+-- TOC entry 200 (class 1259 OID 16564)
+-- Name: files_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.files_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.files_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2992 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: files_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.files_id_seq OWNED BY public.files.id;
+
+
+--
+-- TOC entry 225 (class 1259 OID 16769)
+-- Name: header; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.header (
+    id integer NOT NULL,
+    logo text NOT NULL,
+    slogan text
+);
+
+
+ALTER TABLE public.header OWNER TO postgres;
+
+--
+-- TOC entry 224 (class 1259 OID 16767)
+-- Name: header_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.header_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.header_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2993 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: header_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.header_id_seq OWNED BY public.header.id;
+
+
+--
+-- TOC entry 211 (class 1259 OID 16685)
+-- Name: linkuri; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.linkuri (
+    id integer NOT NULL,
+    img_name text NOT NULL,
+    description text,
+    link text
+);
+
+
+ALTER TABLE public.linkuri OWNER TO postgres;
+
+--
+-- TOC entry 210 (class 1259 OID 16683)
+-- Name: linkuri_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.linkuri_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.linkuri_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2994 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: linkuri_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.linkuri_id_seq OWNED BY public.linkuri.id;
+
+
+--
+-- TOC entry 197 (class 1259 OID 16452)
+-- Name: news; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.news (
+    id integer NOT NULL,
+    title character varying(255) NOT NULL,
+    description text NOT NULL,
+    full_news text NOT NULL,
+    "time" date NOT NULL
+);
+
+
+ALTER TABLE public.news OWNER TO postgres;
+
+--
+-- TOC entry 196 (class 1259 OID 16450)
+-- Name: news_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.news_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.news_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2995 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: news_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.news_id_seq OWNED BY public.news.id;
+
+
+--
+-- TOC entry 203 (class 1259 OID 16577)
+-- Name: panorama; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.panorama (
+    id integer NOT NULL,
+    img_name text NOT NULL,
+    active text
+);
+
+
+ALTER TABLE public.panorama OWNER TO postgres;
+
+--
+-- TOC entry 202 (class 1259 OID 16575)
+-- Name: panorama_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.panorama_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.panorama_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2996 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: panorama_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.panorama_id_seq OWNED BY public.panorama.id;
+
+
+--
+-- TOC entry 223 (class 1259 OID 16757)
+-- Name: pentru_utilizatori; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.pentru_utilizatori (
+    id integer NOT NULL,
+    title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.pentru_utilizatori OWNER TO postgres;
+
+--
+-- TOC entry 222 (class 1259 OID 16755)
+-- Name: pentru_utilizatori_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.pentru_utilizatori_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pentru_utilizatori_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2997 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: pentru_utilizatori_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.pentru_utilizatori_id_seq OWNED BY public.pentru_utilizatori.id;
+
+
+--
+-- TOC entry 217 (class 1259 OID 16724)
+-- Name: produse; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.produse (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.produse OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 16722)
+-- Name: produse_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.produse_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.produse_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2998 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: produse_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.produse_id_seq OWNED BY public.produse.id;
+
+
+--
+-- TOC entry 205 (class 1259 OID 16614)
+-- Name: program; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.program (
+    id integer NOT NULL,
+    days character varying(255) NOT NULL,
+    "time" character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.program OWNER TO postgres;
+
+--
+-- TOC entry 204 (class 1259 OID 16612)
+-- Name: program_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.program_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.program_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 2999 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: program_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.program_id_seq OWNED BY public.program.id;
+
+
+--
+-- TOC entry 207 (class 1259 OID 16658)
+-- Name: proiecte; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.proiecte (
+    id integer NOT NULL,
+    img_name text NOT NULL,
+    description text,
+    link text
+);
+
+
+ALTER TABLE public.proiecte OWNER TO postgres;
+
+--
+-- TOC entry 206 (class 1259 OID 16656)
+-- Name: proiecte_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.proiecte_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.proiecte_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3000 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: proiecte_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.proiecte_id_seq OWNED BY public.proiecte.id;
+
+
+--
+-- TOC entry 215 (class 1259 OID 16712)
+-- Name: resurse; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.resurse (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.resurse OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 16710)
+-- Name: resurse_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.resurse_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.resurse_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3001 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: resurse_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.resurse_id_seq OWNED BY public.resurse.id;
+
+
+--
+-- TOC entry 213 (class 1259 OID 16701)
+-- Name: servicii; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.servicii (
+    id integer NOT NULL,
+    link_title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.servicii OWNER TO postgres;
+
+--
+-- TOC entry 212 (class 1259 OID 16699)
+-- Name: servicii_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.servicii_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.servicii_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3002 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: servicii_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.servicii_id_seq OWNED BY public.servicii.id;
+
+
+--
+-- TOC entry 221 (class 1259 OID 16746)
+-- Name: tutoriale; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tutoriale (
+    id integer NOT NULL,
+    title text NOT NULL,
+    content text
+);
+
+
+ALTER TABLE public.tutoriale OWNER TO postgres;
+
+--
+-- TOC entry 220 (class 1259 OID 16744)
+-- Name: tutoriale_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.tutoriale_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.tutoriale_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3003 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: tutoriale_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.tutoriale_id_seq OWNED BY public.tutoriale.id;
+
+
+--
+-- TOC entry 2785 (class 2604 OID 16501)
+-- Name: achizitii_recente id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.achizitii_recente ALTER COLUMN id SET DEFAULT nextval('public.achizitii_recente_id_seq'::regclass);
+
+
+--
+-- TOC entry 2790 (class 2604 OID 16677)
+-- Name: contacte id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacte ALTER COLUMN id SET DEFAULT nextval('public.contacte_id_seq'::regclass);
+
+
+--
+-- TOC entry 2795 (class 2604 OID 16738)
+-- Name: despre_noi id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.despre_noi ALTER COLUMN id SET DEFAULT nextval('public.despre_noi_id_seq'::regclass);
+
+
+--
+-- TOC entry 2786 (class 2604 OID 16569)
+-- Name: files id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.files ALTER COLUMN id SET DEFAULT nextval('public.files_id_seq'::regclass);
+
+
+--
+-- TOC entry 2798 (class 2604 OID 16772)
+-- Name: header id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.header ALTER COLUMN id SET DEFAULT nextval('public.header_id_seq'::regclass);
+
+
+--
+-- TOC entry 2791 (class 2604 OID 16688)
+-- Name: linkuri id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri ALTER COLUMN id SET DEFAULT nextval('public.linkuri_id_seq'::regclass);
+
+
+--
+-- TOC entry 2784 (class 2604 OID 16455)
+-- Name: news id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.news ALTER COLUMN id SET DEFAULT nextval('public.news_id_seq'::regclass);
+
+
+--
+-- TOC entry 2787 (class 2604 OID 16580)
+-- Name: panorama id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.panorama ALTER COLUMN id SET DEFAULT nextval('public.panorama_id_seq'::regclass);
+
+
+--
+-- TOC entry 2797 (class 2604 OID 16760)
+-- Name: pentru_utilizatori id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pentru_utilizatori ALTER COLUMN id SET DEFAULT nextval('public.pentru_utilizatori_id_seq'::regclass);
+
+
+--
+-- TOC entry 2794 (class 2604 OID 16727)
+-- Name: produse id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produse ALTER COLUMN id SET DEFAULT nextval('public.produse_id_seq'::regclass);
+
+
+--
+-- TOC entry 2788 (class 2604 OID 16617)
+-- Name: program id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.program ALTER COLUMN id SET DEFAULT nextval('public.program_id_seq'::regclass);
+
+
+--
+-- TOC entry 2789 (class 2604 OID 16661)
+-- Name: proiecte id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte ALTER COLUMN id SET DEFAULT nextval('public.proiecte_id_seq'::regclass);
+
+
+--
+-- TOC entry 2793 (class 2604 OID 16715)
+-- Name: resurse id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resurse ALTER COLUMN id SET DEFAULT nextval('public.resurse_id_seq'::regclass);
+
+
+--
+-- TOC entry 2792 (class 2604 OID 16704)
+-- Name: servicii id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.servicii ALTER COLUMN id SET DEFAULT nextval('public.servicii_id_seq'::regclass);
+
+
+--
+-- TOC entry 2796 (class 2604 OID 16749)
+-- Name: tutoriale id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tutoriale ALTER COLUMN id SET DEFAULT nextval('public.tutoriale_id_seq'::regclass);
+
+
+--
+-- TOC entry 2957 (class 0 OID 16498)
+-- Dependencies: 199
+-- Data for Name: achizitii_recente; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.achizitii_recente (id, "time", imagespath, list) FROM stdin;
+5	2019-03-26	http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg,\r\nhttp://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg	<table align="center" border="0" cellpadding="0" cellspacing="0">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td><strong>1</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/015.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-015-5b7e85522c03c6f454a3bfb7b700eba1.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td>\r\n\t\t\t<p><strong>СТУПИН, А.С.</strong>&nbsp;Основы семеноведения: Учебное пособие. СПб: Лань, 2014. 384 с. ISBN 978-5-8114-1570-0.</p>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>2</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/016.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-016-cc4bbd826877061fccf87edd3f1a285f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>GABOR, Manuela Rozalia, OLTEAN, Flavia Dana.</strong>&nbsp;Produse inovative &icirc;n turismul internaţional şi naţional. Bucureşti: C.H. Beck, 2015. 409 p. ISBN 978-606-18-0396-5.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>3</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/017.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-017-cc61788b49051f1c8b098013e86f394f.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>NEACŞU, I., MANASIA, Loredana, CHICIOREANU, Teodora.</strong>&nbsp;Elaborarea lucrărilor de licenţă, disertaţie şi gradul didactic I : Ghid ştiinţific şi metodologic. Piteşti: Paralela 45, 2016. 206 p. ISBN 978-973-47-2279-2.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>4</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/018.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-018-e4c84f5ce426a14c15ffaf46bb08dea3.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>USTUROI, V.Gr., PĂSĂRIN, B., CHEREJI, I. JR., USTUROI, A.</strong>&nbsp;Tehnici hoteliere şi de servire a clienţilor /. - Iaşi : Pim, 2016. - 243 p. ; fig.. - Bibliogr. : p. 242-243. - ISBN 978-606-13-3411-7.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>5</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/019.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-019-cd0fb8ec1cde2f67a683ddf1e0a5eed5.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>COZARI, T.</strong>&nbsp;Păsările: Enciclopedie ilustrată. Chişinău: ARC, 2016. 288 p. ISBN 978-9975-137-46-1.</td>\r\n\t\t</tr>\r\n\t\t<tr>\r\n\t\t\t<td><strong>6</strong></td>\r\n\t\t\t<td><a href="http://biblio.uasm.md/images/sampledata/recente/iulie/020.jpg" rel="lightbox-article" title="iulie-2018"><img alt="iulie-2018" src="http://biblio.uasm.md/images/plg_jdvthumbs/thumb-020-48be010ac5a6abdcf8a4f289ad13c981.jpg" style="margin:5px" /></a></td>\r\n\t\t\t<td><strong>P&Icirc;NZARU, P., S&Icirc;RBU, Tatiana.</strong>&nbsp;Flora vasculară din Republica Moldova : (Lista speciilor şi ecologia). Ed. a 2-a, rev. şi compl. Chişinau, 2016. 261 p. ISBN 978-9975-76-185-7.</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n
+\.
+
+
+--
+-- TOC entry 2967 (class 0 OID 16674)
+-- Dependencies: 209
+-- Data for Name: contacte; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.contacte (id, contact_name, contact_description) FROM stdin;
+2	Tel.	xxxxxxxx
+1	Email	...@mail.ru
+\.
+
+
+--
+-- TOC entry 2977 (class 0 OID 16735)
+-- Dependencies: 219
+-- Data for Name: despre_noi; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.despre_noi (id, title, content) FROM stdin;
+1	Scurt istoric	\N
+2	Biblioteca  în cifre	\N
+3	Parteneriate	\N
+4	Profesional	\N
+\.
+
+
+--
+-- TOC entry 2959 (class 0 OID 16566)
+-- Dependencies: 201
+-- Data for Name: files; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.files (id, file_name, file_type) FROM stdin;
+1	xxx.mp3	\N
+2	3-1.jpg	\N
+3	biblioteca-img-principal-1.jpg	\N
+4	4-1.jpg	\N
+10	2ad4e455b05bc3e629c861aa738beffc.jpg	\N
+11	ban-6.png	\N
+12	ban3.png	\N
+13	ban1.png	\N
+14	ban2.png	\N
+15	library_logo3.png	\N
+16	logo1.png	\N
+17	logo.png	\N
+18	logo2vector.png	\N
+20	logo2.png	\N
+\.
+
+
+--
+-- TOC entry 2983 (class 0 OID 16769)
+-- Dependencies: 225
+-- Data for Name: header; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.header (id, logo, slogan) FROM stdin;
+2	logo2vector.png	SLOGAN HERE
+\.
+
+
+--
+-- TOC entry 2969 (class 0 OID 16685)
+-- Dependencies: 211
+-- Data for Name: linkuri; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.linkuri (id, img_name, description, link) FROM stdin;
+1	ban1.png	\N	http://primo.libuniv.md/
+2	ban2.png	\N	http://dspace.usm.md:8080/xmlui/
+\.
+
+
+--
+-- TOC entry 2955 (class 0 OID 16452)
+-- Dependencies: 197
+-- Data for Name: news; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.news (id, title, description, full_news, "time") FROM stdin;
+3	<p style="text-align:center"><span style="color:#e74c3c"><span style="font-size:16px"><strong>Lansarea manualului tehnologic &ldquo;Producerea caiselor&rdquo;</strong></span></span></p>\r\n	<p><img alt="" src="http://biblio.uasm.md/images/news/prod_caise.jpg" style="float:left; height:200px; margin-left:5px; margin-right:5px; width:200px" />Miercuri, 13 februarie 2019, ora 13.30, Biblioteca Republicană Ştiinţifică Agricolă va găzdui evenimentul de lansare a manualului tehnologic &ldquo;Producerea caiselor&rdquo;, editat cu suportul financiar al Agenției Statelor Unite pentru Dezvoltare Internațională (USAID)&nbsp;prin intermediul proiectului Agricultura Performantă &icirc;n Moldova (APM). Autorii manualului sunt: Ananie Peşteanu, Valerii Manziuc, Andrei Cumpanici, Eugeniu Gudumac, Alexandra Braghiş.</p>\r\n	<p><img alt="" src="http://biblio.uasm.md/images/news/prod_caise.jpg" style="float:left; height:400px; margin-left:5px; margin-right:5px; width:400px" />Miercuri, 13 februarie 2019, ora 13.30, Biblioteca Republicană Ştiinţifică Agricolă va găzdui evenimentul de lansare a manualului tehnologic &ldquo;Producerea caiselor&rdquo;, editat cu suportul financiar al Agenției Statelor Unite pentru Dezvoltare Internațională (USAID)&nbsp;prin intermediul proiectului Agricultura Performantă &icirc;n Moldova (APM). Autorii manualului sunt: Ananie Peşteanu, Valerii Manziuc, Andrei Cumpanici, Eugeniu Gudumac, Alexandra Braghiş.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>&Icirc;n cadrul evenimentului veţi avea posibilitatea să faceţi cunoştinţă şi cu alte publicaţii editate cu suportul USAID, dedicate producerii diferitor fructe (cireşe, mere, piersici, prune, struguri de masă etc.)</p>\r\n\r\n<p><strong>Evenimentul va avea loc &icirc;n sala de lectură nr. 1 a bibliotecii, blocul Facultăţii de Economie a Universităţii Agrare de Stat din Moldova</strong></p>\r\n	2019-03-24
+1	<h1 style="text-align:center"><span style="color:#e67e22"><span style="font-size:18px">Жена Сырбу провела прямой эфир, чтобы доказать, что депутат в больнице</span></span></h1>\r\n	<p><img alt="На видео жена Сырбу говорит, что её супруг находится в обычной палате в больнице скорой помощи. " src="https://i.simpalsmedia.com/point.md/news/370x220/85c35ce906c30db46aa1c102d6ca549d.jpg" style="float:left; height:89px; margin-left:5px; margin-right:5px; width:150px" /><strong>Жена демократа Сергея Сырбу, получившего пощёчину от гражданского активиста Павла Григорчука,&nbsp; организовала прямой эфир на своей странице в Facebook из больничной палаты, в которой лежит&nbsp; &nbsp; депутат.&nbsp;</strong></p>\r\n	<p><img alt="" src="3-1.jpg" />Жена демократа Сергея Сырбу, получившего пощёчину от гражданского активиста Павла Григорчука, организовала прямой эфир на своей странице в Facebook из больничной палаты, в которой лежит депутат.&nbsp;</p>\r\n\r\n<p><img alt="На видео жена Сырбу говорит, что её супруг находится в обычной палате в больнице скорой помощи. " src="https://i.simpalsmedia.com/point.md/news/370x220/85c35ce906c30db46aa1c102d6ca549d.jpg" style="float:left; margin-left:5px; margin-right:5px" /></p>\r\n\r\n<p>На видео жена Сырбу говорит, что её супруг находится в обычной палате в больнице скорой помощи.</p>\r\n\r\n<p>Это произошло после того, как в прессе появились сообщения, что Сергей Сырбу не ночевал в больнице, передает&nbsp;<a href="http://nokta.md/%D0%B6%D0%B5%D0%BD%D0%B0-%D1%81%D0%B5%D1%80%D0%B3%D0%B5%D1%8F-%D1%81%D1%8B%D1%80%D0%B1%D1%83-%D0%B2%D1%8B%D0%BB%D0%BE%D0%B6%D0%B8%D0%BB%D0%B0-%D0%B2-facebook-%D0%B2%D0%B8%D0%B4%D0%B5%D0%BE-%D0%B8/" target="_blank">nokta.md</a>.</p>\r\n\r\n<p>На видео жена Сырбу говорит, что её супруг находится в обычной палате в больнице скорой помощи.&nbsp;</p>\r\n\r\n<p>&laquo;Я решила сделать этот прямой эфир вечером, в качестве доказательства журналистам, которые уже начали писать о том, что он не ночевал в больнице&raquo; &nbsp;-сказал Инна Сырбу.</p>\r\n\r\n<p>Депутат Сергей Сырбу был госпитализирован после пощечины от активиста Павла Григорчука. Инцидент произошел в столичном центральном парке &laquo;Штефан чел Маре&raquo;. Депутат говорит, что получил сотрясение мозга, в то время как Павел Григорчик заявил, что дал ему только пощечину.</p>\r\n\r\n<p>Генеральный инспекторат полиции заявил, что активист Павел Григорчук был задержан и находится под следствием по жалобе депутата Сергея Сырбу.</p>\r\n\r\n<div class="ckeditor-html5-video" data-responsive="true" style="text-align:center">\r\n<video controls="controls" src="https://i.simpalsmedia.com/video/480p/42e8ca02-9bd3-4496-b2b6-c5c83877cfd7.mp4" style="height:auto; max-width:100%">&nbsp;</video>\r\n</div>\r\n\r\n<div class="ckeditor-html5-audio" style="text-align:center">\r\n<audio controls="controls" src="/node_modules/express-admin/public/upload/xxx.mp3">&nbsp;</audio>\r\n</div>\r\n\r\n<p>&nbsp;</p>\r\n	2019-03-26
+2	<p style="text-align:center"><span style="color:#e67e22"><strong>Stimaţi utilizatori!</strong></span></p>\r\n	<p>Joi, 21 martie 2019, ora 13.30, Biblioteca Republicană Ştiinţifică Agricolă &icirc;n colaborare cu Catedra Silvicultură şi Grădini Publice a Facultăţii de Horticultură a UASM organizează activitatea publică consacrată Zilei Internaţionale a Pădurilor&nbsp;cu genericul<strong>&nbsp;&ldquo;Pădurile şi educaţia: &icirc;nvaţă să iubeşti pădurile&rdquo;.</strong></p>\r\n	<p>Joi, 21 martie 2019, ora 13.30, Biblioteca Republicană Ştiinţifică Agricolă &icirc;n colaborare cu Catedra Silvicultură şi Grădini Publice a Facultăţii de Horticultură a UASM organizează activitatea publică consacrată Zilei Internaţionale a Pădurilor&nbsp;cu genericul<strong>&nbsp;&ldquo;Pădurile şi educaţia: &icirc;nvaţă să iubeşti pădurile&rdquo;.</strong></p>\r\n\r\n<p style="text-align:center"><strong><span style="font-size:16px">&Icirc;n program</span>:</strong></p>\r\n\r\n<ol>\r\n\t<li>Pădurile pe Agenda 2030 a ONU&nbsp;<em>(Vera Sobeţchi, Biblioteca Republicană Ştiinţifică Agricolă a UASM)</em></li>\r\n\t<li>Dezvoltare durabilă a pădurilor: conflicte, comunicare, educaţie&nbsp;<em>(Vitalie Gulca, dr., lector univ., Catedra&nbsp;</em><em>Silvicultură şi Grădini Publice a UASM)</em></li>\r\n\t<li>Oportunităţi şi exigenţe privind &icirc;ncadrarea personalului pentru sectorul forestier din Republica Moldova&nbsp;<em>(Ion Talmaci, vicedirector,&nbsp;</em><em>Institutul de Cercetări şi Amenajări Silvice (ICAS)</em>&nbsp;</li>\r\n\t<li>Etica v&acirc;nătorească&nbsp;<em>(Gheorghe Chiriţa, lector univ., Catedra&nbsp;</em><em>Silvicultură şi Grădini Publice a UASM, inginer silvic, ICAS)</em></li>\r\n\t<li>Pădurea şi sănătatea umană &icirc;n contextul politicii şi legislaţiei silvice&nbsp;<em>(Cristina Neamţu, masterandă, UASM)</em></li>\r\n\t<li>Clubul &ldquo;Apărătorii naturii&rdquo; cu compoziţia muzicală artistică &ldquo;Prin paginile cărţii roşii&rdquo;</li>\r\n</ol>\r\n	2019-03-24
+\.
+
+
+--
+-- TOC entry 2961 (class 0 OID 16577)
+-- Dependencies: 203
+-- Data for Name: panorama; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.panorama (id, img_name, active) FROM stdin;
+1	3-1.jpg	active
+2	biblioteca-img-principal-1.jpg	\N
+3	4-1.jpg	\N
+5	2ad4e455b05bc3e629c861aa738beffc.jpg	\N
+\.
+
+
+--
+-- TOC entry 2981 (class 0 OID 16757)
+-- Dependencies: 223
+-- Data for Name: pentru_utilizatori; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.pentru_utilizatori (id, title, content) FROM stdin;
+1	Program/structura	\N
+2	Reguli de utilizare	\N
+3	Instruiri	\N
+\.
+
+
+--
+-- TOC entry 2975 (class 0 OID 16724)
+-- Dependencies: 217
+-- Data for Name: produse; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.produse (id, link_title, content) FROM stdin;
+1	Catalog online	\N
+2	Cataloage tradiționale	\N
+3	Repozitoriu instituțional	\N
+4	e-buletine	\N
+5	Bibliografii	\N
+\.
+
+
+--
+-- TOC entry 2963 (class 0 OID 16614)
+-- Dependencies: 205
+-- Data for Name: program; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.program (id, days, "time") FROM stdin;
+1	Luni-vineri	09.00-18.00
+2	Sâmbătă	09.00-16.00
+3	Duminică	fără program
+\.
+
+
+--
+-- TOC entry 2965 (class 0 OID 16658)
+-- Dependencies: 207
+-- Data for Name: proiecte; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.proiecte (id, img_name, description, link) FROM stdin;
+1	ban3.png	Modernization of academic library services in Moldova	https://newinformationservices.wordpress.com/
+2	ban-6.png	Modern Information Services for Improvement Study Quality	http://misisq.usmf.md/index.php/en-us/
+\.
+
+
+--
+-- TOC entry 2973 (class 0 OID 16712)
+-- Dependencies: 215
+-- Data for Name: resurse; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.resurse (id, link_title, content) FROM stdin;
+4	Resurse Internet	\N
+2	Colecții	\N
+3	Baze de date	\N
+\.
+
+
+--
+-- TOC entry 2971 (class 0 OID 16701)
+-- Dependencies: 213
+-- Data for Name: servicii; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.servicii (id, link_title, content) FROM stdin;
+1	Împrumut de publicaţii la domiciliu.	\N
+2	Împrumut de publicaţii în săli de lectură.	\N
+3	Împrumut interbibliotecar naţional.	\N
+4	Împrumut interbibliotecar internaţional	\N
+5	Informarea utilizatorilor în regim "Difuzare Selectivă a Informaţiei	\N
+6	Organizarea activităţilor de informare bibliografică	\N
+7	Organizarea expoziţiilor, lansărilor de carte	\N
+8	Cercetări bibliografice la cerere	\N
+9	Referinţe bibliografice şi factografice	\N
+10	E - referințe	\N
+11	Consultaţii, asistenţă informaţional-bibliografică	\N
+12	Lecţii de cultură a informaţiei	\N
+13	Ture ghidate în bibliotecă	\N
+14	Acces la baze de date	\N
+15	Livrare electronică de documente	\N
+16	Acces Internet	\N
+\.
+
+
+--
+-- TOC entry 2979 (class 0 OID 16746)
+-- Dependencies: 221
+-- Data for Name: tutoriale; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tutoriale (id, title, content) FROM stdin;
+2	Tutoriale video	\N
+1	Referințe. Citări	<div id="style_15496451780000000305_BODY">\r\n<div class="class_1554354052">\r\n<table align="center" cellpadding="0" cellspacing="0" style="border-collapse:collapse; color:#ffffff; font:normal 16px/24px Arial; width:100%">\r\n\t<tbody>\r\n\t\t<tr>\r\n\t\t\t<td style="vertical-align:top">\r\n\t\t\t<table cellpadding="0" cellspacing="0" style="width:670px">\r\n\t\t\t\t<tbody>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t<p style="margin-left:12px; margin-right:12px">Уважаемый пользователь! Вы получили это письмо, потому что однажды зарегистрировались на сайте бесплатной многопользовательской игры <a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly9wdy5tYWlsLnJ1LyIsInZlcmlmeSI6MCwidXJsX2lkIjozODA2Nywic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.vdEz4kNwSqnwjnMwxjkr47UjyLDh8j9DjVH_KEMgseI" rel=" noopener noreferrer" style="color: #0088c8;text-decoration: underline;" target="_blank">&laquo;Perfect World&raquo;</a></p>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td style="vertical-align:top"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=_olmvE3oZ4TUCzTRCqAl-g&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL2NiLzMzMDAzL2ltYWdlcy9sb2dvLXB3LmpwZw~~&amp;is_https=1" style="display:block; height:auto; max-width:100%; width:100%" /> <img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=VyEdeuwCurNotzKFf2QC5w&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL2NiLzMzMDAzL2ltYWdlcy9naWYuZ2lm&amp;is_https=1" style="display:block; height:auto; max-width:100%; width:100%" /> <img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=v9fK2ktgslnyMAv64AptYg&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL2NiLzMzMDAzL2ltYWdlcy9sb2dvLWNiLmpwZw~~&amp;is_https=1" style="display:block; height:auto; max-width:100%; width:100%" /> <img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=cC6MwFtat75egZi66TvS-A&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL2NiLzMzMDAzL2ltYWdlcy90aXRsZS1wdy5qcGc~&amp;is_https=1" style="display:block; height:auto; max-width:100%; width:100%" />\r\n\t\t\t\t\t\t<table border="0" cellpadding="0" cellspacing="0" style="width:100%">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top"><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNzA1NzUwXzIwMTE3OTgvcGlkLzEwMjgxMC9wb2YvMS9mLzMvIiwidmVyaWZ5IjowLCJ1cmxfaWQiOjM4MDY4LCJzZW5kX3V1aWQiOiJmNDAzMzcwYS02OTJmLTQ5ZDUtYWM5Zi0wODFiZjJmOWRjMzMiLCJlbWFpbCI6ImR1bGdlcl8xOTk2Xzk2QG1haWwucnUifQ.QlM--v2XjRGOpSvNQsS5Gzus934QUaPNc5Mv-vv9mDQ" rel=" noopener noreferrer" style="width: 458px;display: block;mso-hide: all;" target="_blank"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=isHx-8W9YWvw3R_xP6NUtA&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL2NiLzMzMDAzL2ltYWdlcy9idXR0b24ucG5n&amp;is_https=1" style="display:block; float:left; height:auto; max-width:100%; width:458px" /></a></td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\r\n\t\t\t\t\t\t<table border="0" cellpadding="0" cellspacing="0" style="width:100%">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top">\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:82px; margin-right:82px; text-align:left">Perfect World представляет твоему вниманию захватывающую игру. Conqueror&#39;s Blade &mdash; новая MMO, где ты сможешь почувствовать себя настоящим средневековым полководцем и стать великим завоевателем!</p>\r\n\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:82px; margin-right:82px; text-align:left">Регистрируйся в Conqueror&#39;s Blade и получи Cундук с рычащим драконом в Perfect World!</p>\r\n\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:82px; margin-right:82px; text-align:left">Приобрети Набор раннего доступа в Conqueror&#39;s Blade и получи Сапфировый стиль, Купон на поздравление, Свиток Старой луны и Титул великий полководец в Perfect World!</p>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t<td style="vertical-align:top">\r\n\t\t\t\t\t\t<table border="0" cellpadding="0" cellspacing="0" style="width:100%">\r\n\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:0px; margin-right:0px; text-align:left">Помощь</p>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:0px; margin-right:0px; text-align:left">Сайт</p>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t<td>\r\n\t\t\t\t\t\t\t\t\t<p style="margin-left:0px; margin-right:0px; text-align:left">Сообщества</p>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t<td><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=TaK2jm8u-_1eSHtnOwfWfA&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pbWdfMTIucG5n&amp;is_https=1" style="display:block; height:auto; max-width:100%; width:30px" /></td>\r\n\t\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td colspan="6">&nbsp;</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td colspan="6">&nbsp;</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top"><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjMwXzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZwdy5tYWlsLnJ1JTJGZG93bmxvYWQucGhwIiwidmVyaWZ5IjowLCJ1cmxfaWQiOjM4MDY5LCJzZW5kX3V1aWQiOiJmNDAzMzcwYS02OTJmLTQ5ZDUtYWM5Zi0wODFiZjJmOWRjMzMiLCJlbWFpbCI6ImR1bGdlcl8xOTk2Xzk2QG1haWwucnUifQ.dNvOyZ-tcu9HfiiJ1r5pk-WkmmcIVzFUyXd4VpqxScE" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Скачать игру</a><br />\r\n\t\t\t\t\t\t\t\t\t<a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjMxXzEzNjUvcGlkLzUyL3BvZi8xL2YvMy8iLCJ2ZXJpZnkiOjAsInVybF9pZCI6MzgwNzAsInNlbmRfdXVpZCI6ImY0MDMzNzBhLTY5MmYtNDlkNS1hYzlmLTA4MWJmMmY5ZGMzMyIsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.1K9LTWISAwabCeZvvQW4rJFHvgcbxlJrk0n86Cz9UCE" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Поддержка</a><br />\r\n\t\t\t\t\t\t\t\t\t<a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly90d2l0dGVyLmNvbS9NYWlsUnVfU3VwUFciLCJ2ZXJpZnkiOjAsInVybF9pZCI6MzgwNzEsInNlbmRfdXVpZCI6ImY0MDMzNzBhLTY5MmYtNDlkNS1hYzlmLTA4MWJmMmY5ZGMzMyIsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.H7Kam26zelshejX-rQuvVAc6S8_Tl6h_Jwq1FBMgkHQ" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">TWITTER поддержки</a><br />\r\n\t\t\t\t\t\t\t\t\t<a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjMyXzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZwdy5tYWlsLnJ1JTJGbG9naW4ucGhwP2RvPWxvc3RlbWFpbCIsInZlcmlmeSI6MCwidXJsX2lkIjozODA3Miwic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.Bl89l6lvlBfZtYRL6Cckkb-O8M3pzSTY2clpf3FgYjI" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Восстановить пароль</a></td>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top"><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjMzXzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZwdy5tYWlsLnJ1JTJGZ2FtZS5waHAiLCJ2ZXJpZnkiOjAsInVybF9pZCI6MzgwNzMsInNlbmRfdXVpZCI6ImY0MDMzNzBhLTY5MmYtNDlkNS1hYzlmLTA4MWJmMmY5ZGMzMyIsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.8zZ15-yS6YZD7SAvZ-tTauLB7WTOc1y9f4j8jgZar-c" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;vertical-align: top;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Об игре</a><br />\r\n\t\t\t\t\t\t\t\t\t<a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjM0XzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZwdy5tYWlsLnJ1JTJGbmV3cy5waHAiLCJ2ZXJpZnkiOjAsInVybF9pZCI6MzgwNzQsInNlbmRfdXVpZCI6ImY0MDMzNzBhLTY5MmYtNDlkNS1hYzlmLTA4MWJmMmY5ZGMzMyIsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.TsK8Mcf1CC-EoTc6Gy0o91DVli1R4Z-DXr295YOV9WY" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;vertical-align: top;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Новости</a><br />\r\n\t\t\t\t\t\t\t\t\t<a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjM1XzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZwdy5tYWlsLnJ1JTJGZm9ydW1zJTJGZm9ydW1kaXNwbGF5LnBocD8xMDMtUGVyZmVjdC1Xb3JsZCIsInZlcmlmeSI6MCwidXJsX2lkIjozODA3NSwic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.YPfwCtL53WrtcKu9-vhdzsiY8qIhzWuGoNLWRLSHHx4" rel=" noopener noreferrer" style="color: #5489ff;font: bold 10px/20px Arial;margin: 0;padding: 0;vertical-align: top;text-align: left;text-decoration: none;text-transform: uppercase;" target="_blank">Форум игры</a></td>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top">\r\n\t\t\t\t\t\t\t\t\t<table align="left" border="0" cellpadding="0" cellspacing="0">\r\n\t\t\t\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly8xbC1nby5tYWlsLnJ1L3IvYWRpZC8yNTgwNjM3XzAvcGlkLzUyL3BvZi8xL2YvMy91cmwvaHR0cHMlM0ElMkYlMkZ2ay5jb20lMkZwd19tYWlscnUiLCJ2ZXJpZnkiOjAsInVybF9pZCI6MzgwNzYsInNlbmRfdXVpZCI6ImY0MDMzNzBhLTY5MmYtNDlkNS1hYzlmLTA4MWJmMmY5ZGMzMyIsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.SRDKbr9ZnEjrw-3PdAU3fksugW95QYx8se5QSzlyXAQ" rel=" noopener noreferrer" target="_blank"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=mi0f9MsJgi0GBK81kEd1Sg&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pY29fdmsucG5n&amp;is_https=1" style="display:block; height:auto; margin:5px 0 0 0px; max-width:100%; width:30px" /></a></td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly90Lm1lL3B3X21haWxydSIsInZlcmlmeSI6MCwidXJsX2lkIjozODA3Nywic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.ejfURT53ntzE9ldHvA5WuV_OaXXAxPhl57GQJWKW_Gw" rel=" noopener noreferrer" target="_blank"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=LMqpVMsPqDQk3Xkr6x1gZg&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pY29fdGcucG5n&amp;is_https=1" style="display:block; height:auto; margin:5px 0 0 0px; max-width:100%; width:30px" /></a></td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly9kaXNjb3JkYXBwLmNvbS9pbnZpdGUvakVoUTR5NSIsInZlcmlmeSI6MCwidXJsX2lkIjozODA3OCwic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.TFB8ZLiL6gglKm8z2ZoZkhLrf1BRmul49PhkW7PvCaY" rel=" noopener noreferrer" target="_blank"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=kx9l38_N9U4ygQ-ICFzaZQ&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pY29fZGMucG5n&amp;is_https=1" style="border:0; display:inline-block; height:30px; margin:5px 0 0 0px; outline:none; width:30px" /></a></td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><a href="https://mailer.mail.ru/pub/mailer/click/2718/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwb3N0X2lkIjozMTEzLCJ0ZXN0aW5nIjowLCJwb3N0X3R5cGUiOiJTIiwiY29uZmlybSI6MCwidXJsIjoiaHR0cHM6Ly93d3cueW91dHViZS5jb20vdXNlci9QZXJmZWN0V29ybGRSdSIsInZlcmlmeSI6MCwidXJsX2lkIjozODA3OSwic2VuZF91dWlkIjoiZjQwMzM3MGEtNjkyZi00OWQ1LWFjOWYtMDgxYmYyZjlkYzMzIiwiZW1haWwiOiJkdWxnZXJfMTk5Nl85NkBtYWlsLnJ1In0.cdcmeSH6C5ghO_vYH3py92ytvqQja9yHGjj89Prreac" rel=" noopener noreferrer" target="_blank"><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=Z75RSjc7HCZ39kvizBWk2Q&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pY29feXQucG5n&amp;is_https=1" style="display:block; height:auto; margin:5px 0 0 0px; max-width:100%; width:.30px" /></a></td>\r\n\t\t\t\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t<td style="vertical-align:top">\r\n\t\t\t\t\t\t\t\t\t<table align="right" border="0" cellpadding="0" cellspacing="0">\r\n\t\t\t\t\t\t\t\t\t\t<tbody>\r\n\t\t\t\t\t\t\t\t\t\t\t<tr>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=vQSiV61p6ZDMyiIOqqYZig&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pbWdfcHcucG5n&amp;is_https=1" style="display:block; height:auto; margin:5px 0 0 0px; max-width:100%; width:85px" /></td>\r\n\t\t\t\t\t\t\t\t\t\t\t\t<td><img alt="" src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=D-OKjVqcZ3xFpn9BOyLx5Q&amp;url171=b3BlcmF0b3IubWFpbC5ydS9sZXR0ZXJzL3B3LzMzODk3L2ltYWdlcy9pbWdfbWFpbC5wbmc~&amp;is_https=1" style="display:block; height:auto; margin:5px 0 0 20px; max-width:100%; width:86px" /></td>\r\n\t\t\t\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t\t\t\t</td>\r\n\t\t\t\t\t\t\t\t\t<td>&nbsp;</td>\r\n\t\t\t\t\t\t\t\t</tr>\r\n\t\t\t\t\t\t\t</tbody>\r\n\t\t\t\t\t\t</table>\r\n\t\t\t\t\t\t</td>\r\n\t\t\t\t\t</tr>\r\n\t\t\t\t</tbody>\r\n\t\t\t</table>\r\n\t\t\t</td>\r\n\t\t</tr>\r\n\t</tbody>\r\n</table>\r\n\r\n<div style="background-color:#ffffff">\r\n<div style="color:#000000; font-size:14px; padding-top:10px">\r\n<p><a href="https://mailer.mail.ru/pub/mailer/unsubscribe/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZXR0ZXJfaWQiOjI3MTgsInBvc3RfdHlwZSI6IlMiLCJlbWFpbCI6ImR1bGdlcl8xOTk2Xzk2QG1haWwucnUiLCJwb3N0X2lkIjozMTEzfQ.1eMbL4xfbmw2eLte-LWbXWeE1HcvSpwET3rx7QXwtUM/" rel=" noopener noreferrer" style="color:#11B0ED;" target="_blank">Отписаться от рассылки</a></p>\r\n</div>\r\n\r\n<div style="color:#000000; font-size:14px; padding-top:10px">\r\n<p><a href="https://mailer.mail.ru/pub/mailer/web_view/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsZXR0ZXJfaWQiOjI3MTgsImVtYWlsIjoiZHVsZ2VyXzE5OTZfOTZAbWFpbC5ydSJ9.XK7Q7k6Bts4blaRQGDmjkfxk_pmm_tFjMuPlhelKg8c" rel=" noopener noreferrer" style="color:#11B0ED;" target="_blank">Открыть письмо в браузере</a></p>\r\n</div>\r\n<img alt="." src="https://proxy.imgsmail.ru?email=dulger_1996_96%40mail.ru&amp;e=1554608503&amp;h=rCZuxolFXy95z5xTRgGSDg&amp;url171=bWFpbGVyLm1haWwucnUvcHViL21haWxlci9waXhlbC8yNzE4L2V5SmhiR2NpT2lKSVV6STFOaUlzSW5SNWNDSTZJa3BYVkNKOS5leUpzWlhSMFpYSmZhV1FpT2pJM01UZ3NJbk5sYm1SZmRYVnBaQ0k2SW1ZME1ETXpOekJoTFRZNU1tWXRORGxrTlMxaFl6bG1MVEE0TVdKbU1tWTVaR016TXlJc0luUmxjM1JwYm1jaU9qQXNJbkJ2YzNSZmFXUWlPak14TVRNc0luQnZjM1JmZEhsd1pTSTZJbE1pTENKbGJXRnBiQ0k2SW1SMWJHZGxjbDh4T1RrMlh6azJRRzFoYVd3dWNuVWlmUS5YQlBpOUVRS3VhZHUwRmF4aHN3WUx6LTF3RFpPR0UwdFh0REFCMDNEcVhv&amp;is_https=1" style="height:0px; width:0px" /></div>\r\n</div>\r\n</div>\r\n
+\.
+
+
+--
+-- TOC entry 3004 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: achizitii_recente_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.achizitii_recente_id_seq', 5, true);
+
+
+--
+-- TOC entry 3005 (class 0 OID 0)
+-- Dependencies: 208
+-- Name: contacte_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.contacte_id_seq', 2, true);
+
+
+--
+-- TOC entry 3006 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: despre_noi_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.despre_noi_id_seq', 4, true);
+
+
+--
+-- TOC entry 3007 (class 0 OID 0)
+-- Dependencies: 200
+-- Name: files_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.files_id_seq', 20, true);
+
+
+--
+-- TOC entry 3008 (class 0 OID 0)
+-- Dependencies: 224
+-- Name: header_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.header_id_seq', 3, true);
+
+
+--
+-- TOC entry 3009 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: linkuri_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.linkuri_id_seq', 2, true);
+
+
+--
+-- TOC entry 3010 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: news_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.news_id_seq', 4, true);
+
+
+--
+-- TOC entry 3011 (class 0 OID 0)
+-- Dependencies: 202
+-- Name: panorama_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.panorama_id_seq', 5, true);
+
+
+--
+-- TOC entry 3012 (class 0 OID 0)
+-- Dependencies: 222
+-- Name: pentru_utilizatori_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.pentru_utilizatori_id_seq', 3, true);
+
+
+--
+-- TOC entry 3013 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: produse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.produse_id_seq', 5, true);
+
+
+--
+-- TOC entry 3014 (class 0 OID 0)
+-- Dependencies: 204
+-- Name: program_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.program_id_seq', 4, true);
+
+
+--
+-- TOC entry 3015 (class 0 OID 0)
+-- Dependencies: 206
+-- Name: proiecte_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.proiecte_id_seq', 2, true);
+
+
+--
+-- TOC entry 3016 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: resurse_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.resurse_id_seq', 4, true);
+
+
+--
+-- TOC entry 3017 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: servicii_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.servicii_id_seq', 16, true);
+
+
+--
+-- TOC entry 3018 (class 0 OID 0)
+-- Dependencies: 220
+-- Name: tutoriale_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tutoriale_id_seq', 2, true);
+
+
+--
+-- TOC entry 2802 (class 2606 OID 16506)
+-- Name: achizitii_recente achizitii_recente_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.achizitii_recente
+    ADD CONSTRAINT achizitii_recente_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2812 (class 2606 OID 16682)
+-- Name: contacte contacte_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.contacte
+    ADD CONSTRAINT contacte_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2822 (class 2606 OID 16743)
+-- Name: despre_noi despre_noi_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.despre_noi
+    ADD CONSTRAINT despre_noi_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2804 (class 2606 OID 16574)
+-- Name: files files_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.files
+    ADD CONSTRAINT files_pkey PRIMARY KEY (file_name);
+
+
+--
+-- TOC entry 2828 (class 2606 OID 16777)
+-- Name: header header_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.header
+    ADD CONSTRAINT header_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2814 (class 2606 OID 16693)
+-- Name: linkuri linkuri_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri
+    ADD CONSTRAINT linkuri_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2800 (class 2606 OID 16460)
+-- Name: news news_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.news
+    ADD CONSTRAINT news_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2806 (class 2606 OID 16585)
+-- Name: panorama panorama_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.panorama
+    ADD CONSTRAINT panorama_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2826 (class 2606 OID 16765)
+-- Name: pentru_utilizatori pentru_utilizatori_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.pentru_utilizatori
+    ADD CONSTRAINT pentru_utilizatori_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2820 (class 2606 OID 16732)
+-- Name: produse produse_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.produse
+    ADD CONSTRAINT produse_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2808 (class 2606 OID 16622)
+-- Name: program program_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.program
+    ADD CONSTRAINT program_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2810 (class 2606 OID 16666)
+-- Name: proiecte proiecte_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte
+    ADD CONSTRAINT proiecte_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2818 (class 2606 OID 16720)
+-- Name: resurse resurse_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.resurse
+    ADD CONSTRAINT resurse_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2816 (class 2606 OID 16709)
+-- Name: servicii servicii_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.servicii
+    ADD CONSTRAINT servicii_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2824 (class 2606 OID 16754)
+-- Name: tutoriale tutoriale_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tutoriale
+    ADD CONSTRAINT tutoriale_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 2830 (class 2606 OID 16667)
+-- Name: proiecte fk_tests; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.proiecte
+    ADD CONSTRAINT fk_tests FOREIGN KEY (img_name) REFERENCES public.files(file_name);
+
+
+--
+-- TOC entry 2831 (class 2606 OID 16694)
+-- Name: linkuri fk_tests; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.linkuri
+    ADD CONSTRAINT fk_tests FOREIGN KEY (img_name) REFERENCES public.files(file_name);
+
+
+--
+-- TOC entry 2832 (class 2606 OID 16778)
+-- Name: header fk_tests_logo; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.header
+    ADD CONSTRAINT fk_tests_logo FOREIGN KEY (logo) REFERENCES public.files(file_name);
+
+
+--
+-- TOC entry 2829 (class 2606 OID 16586)
+-- Name: panorama fk_tests_students; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.panorama
+    ADD CONSTRAINT fk_tests_students FOREIGN KEY (img_name) REFERENCES public.files(file_name);
+
+
+-- Completed on 2019-04-04 07:51:16
+
+--
+-- PostgreSQL database dump complete
+--
+

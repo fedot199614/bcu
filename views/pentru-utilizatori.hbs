@@ -43,13 +43,12 @@
 	<div data-ride="carousel" class="carousel slide" id="carousel-1" data-interval="4000">
     <div role="listbox" class="carousel-inner">
         {{# each baseheaderimg }}
-        <div class="carousel-item {{this.active}}"><img src="/node_modules/express-admin/public/upload/{{this.img_name}}" alt="Slide Image" class="w-100-header d-block" /></div>
+        <div class="carousel-item {{this.active}}"><img src="node_modules/express-admin/public/upload/{{this.img_name}}" alt="Slide Image" class="w-100-header d-block" /></div>
 		{{/each}}
     </div>
     <div><a href="#carousel-1" role="button" data-slide="prev" class="carousel-control-prev"><span class="sr-only">Previous</span></a><a href="#carousel-1" role="button" data-slide="next" class="carousel-control-next"><span class="sr-only">Next</span></a></div>
-</div>
-
-<div class="filter filter-black">
+   </div>
+   <div class="filter filter-black">
 	</div> 
 	</div> 
 	<div class="info"> 
@@ -86,7 +85,7 @@
     <li style="margin-bottom:2px;"><a href="/book-order" >Propuneri pentru achiziții<br /></a><li>
     <li><a href="#" class="has-arrow" aria-expanded="false">Servicii<br /></a>
         <ul class="list-unstyled" aria-expanded="true">
-           {{# each servicii }}
+            {{# each servicii }}
             <li ><a href="/servicii?id={{this.id}}">{{this.link_title}}<br /></a></li>
 			{{/each}}
             
@@ -111,7 +110,7 @@
                     <div class="sub-panel-dark"><div class="table-responsive program-table" >
     <table class="table">
         <tbody >
-           {{# each linkuri }}
+            {{# each linkuri }}
             <tr>
                 <td align="center" class="photo" data-title="{{this.description}}">
                     <a href="{{this.link}}" target="_blank"><img width="90%" src="node_modules/express-admin/public/upload/{{this.img_name}}" border="0" alt="{{this.description}}"></a>
@@ -124,43 +123,13 @@
 </div></div>
                 </div>
 				<!--center block-->
-                <div class="col-md-8 offset-md-2 box-shadow" style="margin-left:10px;margin-right:10px;background-color:#fff;margin-bottom:10px;">
-				<div style="margin:10px">
-					<form method="post">
-        
-						<h2 class="text-center" style="border-bottom: 1px solid #556">Propuneri pentru achiziţii</h2>
-        
-						<div class="form-group"><input class="form-control" type="text" id="titlul" name="titlul" required placeholder="Titlul" /></div>
-						<div class="form-group"><input class="form-control" type="text"  id="autorul" name="autorul" required placeholder="Autorul (autorii)" /></div>
-						<div class="form-group"><input class="form-control" type="number"  id="anul" name="anul" required placeholder="Anul de ediție" /></div>
-						<div class="form-group"><input class="form-control" type="text" id="editura" name="editura" placeholder="Editura" /></div>
-						<div class="form-group"><input class="form-control" type="text" id="locul" name="locul" placeholder="Locul publicării" /></div>
-						<div class="form-group"><input class="form-control" type="text" id="isbn" name="isbn" placeholder="ISBN/ISSN" /></div>
-						<h2 class="text-center" style="border-bottom: 1px solid #556">Solicitant</h2>
-						<div class="form-group"><input class="form-control" type="text" id="nume" name="nume" required placeholder="Nume" /></div>
-						<div class="form-group"><input class="form-control" type="text" id="facultate" name="facultate" required placeholder="Facultate" /></div>
-						<div class="form-group"><input class="form-control" type="text" id="catedra" name="catedra" required placeholder="Catedra (subdiviziune)" /></div>
-						<div class="form-group">
-						<select id="statut" name="statut">
-						<optgroup label="This is a group">
-						<option value="Student" selected>Student</option>
-						<option value="Cadru didactic">Cadru didactic</option>
-						<option value="Cercetător">Cercetător</option>
-						<option value="Altă categorie">Altă categorie</option>
-						</optgroup>
-						</select>
-						</div>
-						<div class="form-group"><button class="btn btn-primary" onclick="alertTest()" type="submit">Send</button></div>
-						</form>
-						<!-- Модальное окно -->  
-						
-						<div style="display:{{displayallert}}">
-						<div class="alert alert-success" role="alert">
-							Thanks for your letter!
-						</div>
-						</div>
-						
-						
+                <div class="col-md-8 offset-md-2 box-shadow" style="margin-left:10px;margin-right:10px;background-color:#fff;margin-bottom:10px;"><div style="margin:10px">
+				
+				<div class="container" style="margin-top: 15px" id="jar">
+					{{# each pentruutilizatoricontent}}
+					{{{this.content}}}
+					{{/each}}
+				</div>
 				</div>
 				</div>
                 <div class="col" style="margin-bottom:10px;">
@@ -179,15 +148,16 @@
 					<h3 class="sub-panel-header-right">Achiziţii Recente</h3>
                     <div class="sub-panel-dark">
                         <div class="carousel slide" data-ride="carousel" id="carousel-2" style="margin-top:18px;width:100%;height:267px;">
-							<a href="/achizitii?id={{idachizitii}}">
+						<a href="/achizitii?id={{idachizitii}}">
                             <div class="carousel-inner" role="listbox" style="width:100%;height:267px;">
-                                {{# each slider }}
+                               {{# each slider }}
                                 <div class="carousel-item {{this.activeSt}}"><img class="w-100 d-block" src="{{this.imgUrl}}" alt="Slide Image"></div>
 								{{/each}} 
                             </div>
 							</a>
                             <div><a class="carousel-control-prev" href="#carousel-2" role="button" data-slide="prev"><span class="carousel-control-prev-icon"></span><span class="sr-only">Previous</span></a><a class="carousel-control-next" href="#carousel-2"
                                     role="button" data-slide="next"><span class="carousel-control-next-icon"></span><span class="sr-only">Next</span></a></div>
+                           
                         </div>
                     </div></div>
 					<div style="display:{{this.displayproiecte}}">

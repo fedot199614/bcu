@@ -1,20 +1,38 @@
 <div style="width:100%!important;">
         <nav class="navbar navbar-light navbar-expand-md navbar-dark fixed-top navbar-transparent shadow-sm">
-            <div class="container"><a class="navbar-brand" href="/" style="width:15%;"><img src="assets/img/library_logo3.png" style="width:25%;">&nbsp;</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="container"><a class="navbar-brand" href="/" >{{# each header }}
+			<img src="node_modules/express-admin/public/upload/{{this.logo}}" style="width:25%;">
+			{{/each}}&nbsp;</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
                 <div
                     class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item" role="presentation"><a class="nav-link" href="/">NOUTĂȚI<br></a></li>
                         <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">DESPRE NOI</a>
-                            <div class="dropdown-menu dropdown-content" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <div class="dropdown-menu dropdown-content" role="menu">
+							{{# each desprenoi }}
+							<a class="dropdown-item" role="presentation" href="/despre-noi?id={{this.id}}">{{this.title}}</a>
+							{{/each}}
+							</div>
                         </li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">REPOZITORIU</a></li>
-                        <li class="nav-item" role="presentation"><a class="nav-link" href="#">CATALOG<br></a></li>
+                        <li class="nav-item" role="presentation">
+						<a class="nav-link" href="http://dspace.usm.md:8080/xmlui/">REPOZITORIU</a></li>
+                        <li class="nav-item" role="presentation">
+						<a class="nav-link" href="http://primo.libuniv.md/">CATALOG<br></a></li>
                         <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">PENTRU UTILIZATORI</a>
-                            <div class="dropdown-menu dropdown-content" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <div class="dropdown-menu dropdown-content" role="menu">
+							<a class="dropdown-item" role="presentation" href="/va-ofera">Biblioteca va oferă</a>
+							<a class="dropdown-item" role="presentation" href="/achizitii-list">Achiziții Recente</a>
+							{{# each pentruutilizatori }}
+							<a class="dropdown-item" role="presentation" href="/pentru-utilizatori?id={{this.id}}">{{this.title}}</a>
+							{{/each}}
+							</div>
                         </li>
                         <li class="dropdown"><a class="dropdown-toggle nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false" href="#">TUTORIALE</a>
-                            <div class="dropdown-menu dropdown-content" role="menu"><a class="dropdown-item" role="presentation" href="#">First Item</a><a class="dropdown-item" role="presentation" href="#">Second Item</a><a class="dropdown-item" role="presentation" href="#">Third Item</a></div>
+                            <div class="dropdown-menu dropdown-content" role="menu">
+							{{# each tutoriale }}
+							<a class="dropdown-item" role="presentation" href="/tutoriale?id={{this.id}}">{{this.title}}</a>
+							{{/each}}
+							</div>
                         </li>
                     </ul>
             </div>
@@ -36,7 +54,9 @@
 	</div> 
 	<div class="info"> 
 	<h1>Biblioteca Centrala USM</h1> 
-	<p> SLOGAN HERE </p> 
+	{{# each header }}
+	<p> {{this.slogan}} </p> 
+	{{/each}} 
 	<div itemscope="" itemtype="http://schema.org/WebSite" class="navbar-search-form"> 
 	<form class="" itemprop="potentialAction" itemscope="itemscope" itemtype="http://schema.org/SearchAction" action="/search" accept-charset="UTF-8" method="get">
 	<input name="utf8" type="hidden" value="✓"> 

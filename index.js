@@ -78,6 +78,7 @@ const config = {
 var sql_panorama = 'select * from panorama';
 var sql_left_block_slider = 'select id,imagespath from achizitii_recente order by time desc limit 1';
 var aql_achizitii_detail = 'select *,to_char( time, \'Month YYYY\') as re_format from achizitii_recente  where id=';
+var sql_achizitii_list = 'select *,to_char( time, \'Month YYYY\') as re_format from achizitii_recente';
 var sql_program = 'select * from program';
 var sql_proiecte = 'select * from proiecte';
 var sql_contacte  = 'select * from contacte';
@@ -85,6 +86,10 @@ var sql_linkuri  = 'select * from linkuri';
 var sql_servicii  = 'select * from servicii';
 var sql_produse  = 'select * from produse';
 var sql_resurse  = 'select * from resurse';
+var sql_tutoriale  = 'select * from tutoriale';
+var sql_despre_noi  = 'select * from despre_noi';
+var sql_pentru_utilizatori  = 'select * from pentru_utilizatori';
+var sql_header  = 'select * from header limit 1';
 
 
 
@@ -155,6 +160,7 @@ xAdmin.init(config, function (err, admin) {
 
 app.get('/', (request, response) => {
 	//base query
+	var header='';
 	var panorama;
 	var sliderFull = [];
 	var idAchiz = '';
@@ -166,6 +172,9 @@ app.get('/', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	fs.writeFile('totalVisits.txt', visits++, function (err) {
 	if (err) throw err;
@@ -194,6 +203,24 @@ app.get('/', (request, response) => {
 	}
 	})
 	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
 	
 	client.query(sql_panorama, [], function (err, result) {
 	
@@ -240,7 +267,7 @@ app.get('/', (request, response) => {
 		return console.error('error fetching client from pool', err)
 	}
 	
-	client.query('SELECT *, to_char( time, \'DD/MM/YYYY\') as re_format from news order by time desc', [], function (err, result) {
+	client.query('SELECT *, to_char( time, \'DD/MM/YYYY\') as re_format from news order by time desc limit '+limit, [], function (err, result) {
 		
     if (err) {
       return console.error('error happened during query', err)
@@ -260,7 +287,11 @@ app.get('/', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	
   })
@@ -268,6 +299,7 @@ app.get('/', (request, response) => {
 })
 //feedback
 app.get('/feedback', (request, response) => {
+	var header='';
 	var program ='';
 	var panorama;
 	var sliderFull = [];
@@ -279,6 +311,9 @@ app.get('/feedback', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 
@@ -302,6 +337,26 @@ app.get('/feedback', (request, response) => {
 		
 	}
 	})	
+	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})	
+		
 		
 	client.query(sql_program, [], function (err, result) {
 	
@@ -356,7 +411,11 @@ app.get('/feedback', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
     })
 })
 
@@ -364,6 +423,7 @@ app.get('/feedback', (request, response) => {
 })
 //book-order
 app.get('/book-order', (request, response) => {
+	var header='';
 	var panorama;
 	var sliderFull = [];
 	var idAchiz = '';
@@ -375,6 +435,9 @@ app.get('/book-order', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 	client.query(sql_left_block_slider, [], function (err, result) {
@@ -396,6 +459,27 @@ app.get('/book-order', (request, response) => {
 		
 	}
 	})	
+	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+	
 	
 	client.query(sql_program, [], function (err, result) {
 	
@@ -452,7 +536,11 @@ app.get('/book-order', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
     })
 	  })
 	
@@ -460,7 +548,7 @@ app.get('/book-order', (request, response) => {
 })
 //detali	
 app.get('/detail', (request, response) => {
-	
+	var header='';
 	var newsId = request.query.id;
 	var panorama;
 	var sliderFull = [];
@@ -473,6 +561,9 @@ app.get('/detail', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 
@@ -495,8 +586,28 @@ app.get('/detail', (request, response) => {
 		
 	}
 	})	
-		
-		
+	
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	
 	client.query(sql_panorama, [], function (err, result) {
 	
 	panorama = result.rows;
@@ -557,7 +668,11 @@ app.get('/detail', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	
   })
@@ -567,6 +682,7 @@ app.get('/detail', (request, response) => {
 	
 //achizitii_recente
 app.get('/achizitii', (request, response) => {
+	var header='';
 	var achizitiiId = request.query.id;
 	var panorama;
 	var sliderFull = [];
@@ -580,12 +696,31 @@ app.get('/achizitii', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
-
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
 	client.query(aql_achizitii_detail+""+achizitiiId, [], function (err, result) {
-	
-	
 	achizitiiDetail = result.rows;
 	})
 
@@ -659,14 +794,151 @@ app.get('/achizitii', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	})
 
     
 })
 
+app.get('/achizitii-list', (request, response) => {
+	var header='';
+	var panorama;
+	var sliderFull = [];
+	var idAchiz;
+	var achizitiiList;
+	var displayFlagSlider = '';
+	var program ='';
+	var proiecte ='';
+	var contacte ='';
+	var linkuri ='';
+	var servicii ='';
+	var resurse ='';
+	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
+	var client = request.app.get('client');
+	
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+	
+	
+	
+	client.query(sql_achizitii_list, [], function (err, result) {
+	achizitiiList = result.rows;
+	})
+
+	
+	client.query(sql_program, [], function (err, result) {
+	
+	program = result.rows;
+	})
+	
+	client.query(sql_proiecte, [], function (err, result) {
+	
+	proiecte = result.rows;
+	})
+	
+	client.query(sql_contacte, [], function (err, result) {
+	
+	contacte = result.rows;
+	})
+	
+	client.query(sql_linkuri, [], function (err, result) {
+	
+	linkuri = result.rows;
+	})
+	
+	client.query(sql_servicii, [], function (err, result) {
+	
+	servicii = result.rows;
+	})
+	
+	client.query(sql_resurse, [], function (err, result) {
+	
+	resurse = result.rows;
+	})
+	
+	client.query(sql_produse, [], function (err, result) {
+	
+	produse = result.rows;
+	})
+	
+	
+	client.query(sql_left_block_slider, [], function (err, result) {
+	
+	var slider = result.rows[0].imagespath.split(",");
+	idAchiz = result.rows[0].id;
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+		
+		
+	client.query(sql_panorama, [], function (err, result) {
+	
+	panorama = result.rows;
+	
+	
+	response.render('achizitii-list', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		achizitiilist: achizitiiList,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		program: program,
+		proiecte: proiecte,
+		contacte: contacte,
+		linkuri: linkuri,
+		resurse: resurse,
+		servicii: servicii,
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
+	})
+	})
+
+    
+})
+
+
+
+
 app.post("/book-order", urlencodedParser, function (request, response) {
+	var header='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
@@ -718,7 +990,29 @@ app.post("/book-order", urlencodedParser, function (request, response) {
 		
 	}
 	})	
-		
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+
+	
 	client.query(sql_program, [], function (err, result) {
 	
 	program = result.rows;
@@ -773,7 +1067,11 @@ app.post("/book-order", urlencodedParser, function (request, response) {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
     })
 	  })
 	
@@ -782,6 +1080,10 @@ app.post("/book-order", urlencodedParser, function (request, response) {
 });
 
 app.post("/feedback", urlencodedParser, function (request, response) {
+	var header='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var proiecte ='';
 	var contacte ='';
 	var linkuri ='';
@@ -833,7 +1135,29 @@ app.post("/feedback", urlencodedParser, function (request, response) {
 		
 	}
 	})	
-		
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+
+	
 	client.query(sql_program, [], function (err, result) {
 	
 	program = result.rows;
@@ -887,7 +1211,11 @@ app.post("/feedback", urlencodedParser, function (request, response) {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 		
     })
 })
@@ -896,7 +1224,7 @@ app.post("/feedback", urlencodedParser, function (request, response) {
 
 //servicii
 app.get('/servicii', (request, response) => {
-	
+	var header='';
 	var serviciiId = request.query.id;
 	var panorama;
 	var sliderFull = [];
@@ -909,7 +1237,9 @@ app.get('/servicii', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
-	
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	
 
 	client.query(sql_left_block_slider, [], function (err, result) {
@@ -932,7 +1262,25 @@ app.get('/servicii', (request, response) => {
 	}
 	})	
 		
-		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
 	client.query(sql_panorama, [], function (err, result) {
 	
 	panorama = result.rows;
@@ -995,7 +1343,11 @@ app.get('/servicii', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	
   })
@@ -1006,7 +1358,7 @@ app.get('/servicii', (request, response) => {
 
 //produse
 app.get('/produse', (request, response) => {
-	
+	var header='';
 	var produseId = request.query.id;
 	var panorama;
 	var sliderFull = [];
@@ -1019,6 +1371,9 @@ app.get('/produse', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 
@@ -1042,7 +1397,25 @@ app.get('/produse', (request, response) => {
 	}
 	})	
 		
-		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
 	client.query(sql_panorama, [], function (err, result) {
 	
 	panorama = result.rows;
@@ -1105,7 +1478,11 @@ app.get('/produse', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	
   })
@@ -1115,7 +1492,7 @@ app.get('/produse', (request, response) => {
 
 //resurse
 app.get('/resurse', (request, response) => {
-	
+	var header='';
 	var resurseId = request.query.id;
 	var panorama;
 	var sliderFull = [];
@@ -1128,6 +1505,9 @@ app.get('/resurse', (request, response) => {
 	var servicii ='';
 	var resurse ='';
 	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 
@@ -1151,7 +1531,25 @@ app.get('/resurse', (request, response) => {
 	}
 	})	
 		
-		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
 	client.query(sql_panorama, [], function (err, result) {
 	
 	panorama = result.rows;
@@ -1214,7 +1612,11 @@ app.get('/resurse', (request, response) => {
 		linkuri: linkuri,
 		resurse: resurse,
 		servicii: servicii,
-		produse: produse
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 	})
 	
   })
@@ -1225,7 +1627,7 @@ app.get('/resurse', (request, response) => {
 
 //resurse
 app.get('/search', (request, response) => {
-	
+	var header='';
 	var searchQuery = request.query.q;
 	var panorama;
 	var sliderFull = [];
@@ -1243,6 +1645,9 @@ app.get('/search', (request, response) => {
 	var resurseresp='';
 	var produseresp='';
 	var serviciiresp='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
 	var client = request.app.get('client');
 	
 
@@ -1266,7 +1671,25 @@ app.get('/search', (request, response) => {
 	}
 	})	
 		
-		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
 	client.query(sql_panorama, [], function (err, result) {
 	
 	panorama = result.rows;
@@ -1358,13 +1781,553 @@ app.get('/search', (request, response) => {
 		achizitii: achizitii,
 		resurseresp: resurseresp,
 		serviciiresp: serviciiresp,
-		produseresp: produseresp
+		produseresp: produseresp,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
 		
 	})
 	})  
 })
 
+app.get('/va-ofera', (request, response) => {
+	var header='';
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+	var program ='';
+	var proiecte ='';
+	var contacte ='';
+	var linkuri ='';
+	var servicii ='';
+	var resurse ='';
+	var produse ='';
+	var achizitii ='';
+	var resurseresp='';
+	var produseresp='';
+	var serviciiresp='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
+	var client = request.app.get('client');
 	
+
+	client.query(sql_left_block_slider, [], function (err, result) {
+	
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_panorama, [], function (err, result) {
+	
+	panorama = result.rows;
+	})
+	
+	client.query(sql_program, [], function (err, result) {
+	
+	program = result.rows;
+	})
+	
+	client.query(sql_proiecte, [], function (err, result) {
+	
+	proiecte = result.rows;
+	})
+	
+	client.query(sql_contacte, [], function (err, result) {
+	
+	contacte = result.rows;
+	})
+	
+	client.query(sql_linkuri, [], function (err, result) {
+	
+	linkuri = result.rows;
+	})
+	
+	client.query(sql_servicii, [], function (err, result) {
+	
+	servicii = result.rows;
+	})
+	
+	client.query(sql_resurse, [], function (err, result) {
+	
+	resurse = result.rows;
+	})
+	
+	client.query(sql_produse, [], function (err, result) {
+	
+	produse = result.rows;
+	})
+	
+	
+	//search query
+	client.query('select * from resurse', [], function (err, result) {
+	
+	resurseresp=result.rows
+	
+	})
+	
+	
+	client.query('select * from servicii', [], function (err, result) {
+	
+	serviciiresp=result.rows
+	})
+
+	client.query('select * from produse', [], function (err, result) {
+	
+	produseresp=result.rows
+	
+	
+
+	
+	response.render('servicii-resurse-produse',{
+		baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		program: program,
+		proiecte: proiecte,
+		contacte: contacte,
+		linkuri: linkuri,
+		resurse: resurse,
+		servicii: servicii,
+		produse: produse,
+		resurseresp: resurseresp,
+		serviciiresp: serviciiresp,
+		produseresp: produseresp,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		header: header
+		
+	})
+	})  
+})
+
+app.get('/tutoriale', (request, response) => {
+	var header='';
+	var tutorialeId = request.query.id;
+	var tutorialeContent='';
+	var program ='';
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+	var proiecte ='';
+	var contacte ='';
+	var linkuri ='';
+	var servicii ='';
+	var resurse ='';
+	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
+	var client = request.app.get('client');
+	
+
+	client.query(sql_left_block_slider, [], function (err, result) {
+	
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+	
+	client.query(sql_tutoriale+" where id="+tutorialeId, [], function (err, result) {
+	
+	tutorialeContent = result.rows;
+	})
+		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})	
+		
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_program, [], function (err, result) {
+	
+	program = result.rows;
+	})	
+	
+	client.query(sql_proiecte, [], function (err, result) {
+	
+	proiecte = result.rows;
+	})
+	
+	client.query(sql_contacte, [], function (err, result) {
+	
+	contacte = result.rows;
+	})
+	
+	client.query(sql_linkuri, [], function (err, result) {
+	
+	linkuri = result.rows;
+	})
+
+	
+	client.query(sql_servicii, [], function (err, result) {
+	
+	servicii = result.rows;
+	})
+	
+	client.query(sql_resurse, [], function (err, result) {
+	
+	resurse = result.rows;
+	})
+	
+	client.query(sql_produse, [], function (err, result) {
+	
+	produse = result.rows;
+	})
+	
+	client.query(sql_panorama, [], function (err, result) {
+	
+	panorama = result.rows;
+	response.render('tutoriale', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		displayallert: 'none',
+		program: program,
+		proiecte: proiecte,
+		contacte: contacte,
+		linkuri: linkuri,
+		resurse: resurse,
+		servicii: servicii,
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		tutorialecontent: tutorialeContent,
+		header: header
+    })
+})    
+})
+
+app.get('/pentru-utilizatori', (request, response) => {
+	var header='';
+	var pentru_utilizatoriId = request.query.id;
+	var pentru_utilizatoriContent='';
+	var program ='';
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+	var proiecte ='';
+	var contacte ='';
+	var linkuri ='';
+	var servicii ='';
+	var resurse ='';
+	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
+	var client = request.app.get('client');
+	
+
+	client.query(sql_left_block_slider, [], function (err, result) {
+	
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+	
+	client.query(sql_pentru_utilizatori+" where id="+pentru_utilizatoriId, [], function (err, result) {
+	
+	pentru_utilizatoriContent = result.rows;
+	})
+
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})	
+		
+		
+	client.query(sql_program, [], function (err, result) {
+	
+	program = result.rows;
+	})	
+	
+	client.query(sql_proiecte, [], function (err, result) {
+	
+	proiecte = result.rows;
+	})
+	
+	client.query(sql_contacte, [], function (err, result) {
+	
+	contacte = result.rows;
+	})
+	
+	client.query(sql_linkuri, [], function (err, result) {
+	
+	linkuri = result.rows;
+	})
+
+	
+	client.query(sql_servicii, [], function (err, result) {
+	
+	servicii = result.rows;
+	})
+	
+	client.query(sql_resurse, [], function (err, result) {
+	
+	resurse = result.rows;
+	})
+	
+	client.query(sql_produse, [], function (err, result) {
+	
+	produse = result.rows;
+	})
+	
+	client.query(sql_panorama, [], function (err, result) {
+	
+	panorama = result.rows;
+	response.render('pentru-utilizatori', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		displayallert: 'none',
+		program: program,
+		proiecte: proiecte,
+		contacte: contacte,
+		linkuri: linkuri,
+		resurse: resurse,
+		servicii: servicii,
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		pentruutilizatoricontent: pentru_utilizatoriContent,
+		header: header
+    })
+})    
+})
+
+app.get('/despre-noi', (request, response) => {
+	var header='';
+	var despre_noiId = request.query.id;
+	var despre_noiContent='';
+	var program ='';
+	var panorama;
+	var sliderFull = [];
+	var idAchiz = '';
+	var displayFlagSlider = '';
+	var proiecte ='';
+	var contacte ='';
+	var linkuri ='';
+	var servicii ='';
+	var resurse ='';
+	var produse ='';
+	var pentru_utilizatori='';
+	var tutoriale='';
+	var despre_noi='';
+	var client = request.app.get('client');
+	
+
+	client.query(sql_left_block_slider, [], function (err, result) {
+	
+	var slider; 
+	if(typeof result.rows[0] != "undefined"){
+		slider = result.rows[0].imagespath.split(",");
+		idAchiz = result.rows[0].id;
+	}else{
+		slider = result.rows;
+		displayFlagSlider = 'none';
+	}
+	
+	for(var i in slider){
+		var active = null;
+		if(i == 0){
+			active = "active";
+		}
+		sliderFull.push({"imgUrl":slider[i],"activeSt": active});
+		
+	}
+	})	
+		
+	client.query(sql_despre_noi+" where id="+despre_noiId, [], function (err, result) {
+	
+	despre_noiContent = result.rows;
+	})	
+		
+		
+	client.query(sql_tutoriale, [], function (err, result) {
+	
+	tutoriale = result.rows;
+	})
+	
+	client.query(sql_despre_noi, [], function (err, result) {
+	
+	despre_noi = result.rows;
+	})
+	
+	client.query(sql_pentru_utilizatori, [], function (err, result) {
+	
+	pentru_utilizatori = result.rows;
+	})	
+		
+	client.query(sql_header, [], function (err, result) {
+	header = result.rows;
+	})
+	
+	client.query(sql_program, [], function (err, result) {
+	
+	program = result.rows;
+	})	
+	
+	client.query(sql_proiecte, [], function (err, result) {
+	
+	proiecte = result.rows;
+	})
+	
+	client.query(sql_contacte, [], function (err, result) {
+	
+	contacte = result.rows;
+	})
+	
+	client.query(sql_linkuri, [], function (err, result) {
+	
+	linkuri = result.rows;
+	})
+
+	
+	client.query(sql_servicii, [], function (err, result) {
+	
+	servicii = result.rows;
+	})
+	
+	client.query(sql_resurse, [], function (err, result) {
+	
+	resurse = result.rows;
+	})
+	
+	client.query(sql_produse, [], function (err, result) {
+	
+	produse = result.rows;
+	})
+	
+	client.query(sql_panorama, [], function (err, result) {
+	
+	panorama = result.rows;
+	response.render('despre-noi', {
+        baseheaderimg: panorama,
+		slider: sliderFull,
+		idachizitii: idAchiz,
+		displayachizitii: displayFlagSlider,
+		visits: uniqueVisitors,
+		visitstotal: visits,
+		displayallert: 'none',
+		program: program,
+		proiecte: proiecte,
+		contacte: contacte,
+		linkuri: linkuri,
+		resurse: resurse,
+		servicii: servicii,
+		produse: produse,
+		desprenoi: despre_noi,
+		pentruutilizatori: pentru_utilizatori,
+		tutoriale: tutoriale,
+		desprenoicontent: despre_noiContent,
+		header: header
+    })
+})  
+})	
 	
     // site server
     app.listen(port, function () {

@@ -87,7 +87,32 @@ CREATE TABLE linkuri(
 )
 
 
+CREATE TABLE despre_noi (
+    id  SERIAL PRIMARY KEY,
+    title text NOT NULL,
+    content text 
+)
 
+CREATE TABLE tutoriale (
+    id  SERIAL PRIMARY KEY,
+    title text NOT NULL,
+    content text 
+)
+
+CREATE TABLE pentru_utilizatori (
+    id  SERIAL PRIMARY KEY,
+    title text NOT NULL,
+    content text 
+)
+
+CREATE TABLE header (
+    id  SERIAL PRIMARY KEY,
+    logo text NOT NULL,
+	constraint fk_tests_logo
+    foreign key (logo)
+	REFERENCES files (file_name),
+    slogan text 
+)
 
 select * from news order by id desc limit 5 offset 5
 
